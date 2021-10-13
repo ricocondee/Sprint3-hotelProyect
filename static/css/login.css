@@ -95,13 +95,13 @@ h1{
 	width: 32px;
 }
 .social-register:first-child{
-	background-image: url('/statics/images/facebook.svg');
+	background-image: url('/static/images/facebook.svg');
 }
 .social-register:nth-child(2){
-	background-image: url('/statics/images/google.svg');
+	background-image: url('/static/images/google.svg');
 }
 .social-register:nth-child(3){
-	background-image: url('/statics/images/linkedin.svg');
+	background-image: url('/static/images/linkedin.svg');
 }
 
 
