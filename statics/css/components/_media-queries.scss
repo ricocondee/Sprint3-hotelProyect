@@ -1,0 +1,306 @@
+/*==================== PARA DISPOSITIVOS PEQUEÑOS ====================*/
+@media screen and (max-width: 360px) {
+    .svg__img{
+        width: 100%;
+    }
+    .section{
+        padding: 3.5rem 0 1rem;
+    }
+
+    .servicios__data{
+        padding: 1rem .75rem;
+    }
+    .servicios__img{
+        width: 250px;
+    }
+    .home__see-more{
+        margin-top: 3rem;
+    }
+}
+
+/*==================== PARA DISPOSITIVOS MEDIANOS ====================*/
+@media screen and (min-width: 420px ) {
+
+    .home__description{
+        display: none;
+    }
+    .home__description-2{
+        display: inline-block;
+    }
+
+    .oferta__data, .oferta__img{
+        
+        width: 20rem;
+        justify-self: center;
+        // width: ; 8 = 128
+    }
+
+    // .oferta__img{
+    //     // margin-top: 1rem;
+    //     width: 20rem;
+    //     // border-radius: 1rem;
+    //     // justify-self: center;
+    // }
+
+    .footer__container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media screen and (min-width: 576px) {
+    .grid{
+        gap: 1rem;
+    }
+    .svg__img{
+        width: 100%;
+    }
+
+    .home__title{
+        font-size: 2rem;
+    }
+    
+    .home__img{
+        order: 1;
+    }
+
+    .home__container{
+        padding: 2rem 2rem;
+        grid-template-columns: 1fr 2fr;
+        align-items: center;
+    }
+
+    .home__description, .home__description-2{
+        display: none;
+    }
+
+    .home__description-3{   
+        display: inline-block;
+    }
+
+
+    .oferta__data{
+        width: 35rem;
+        justify-self: center;
+    }
+    .oferta__img{
+        
+        width: 25rem;
+        justify-self: center;
+        // width: ; 8 = 128
+    }
+
+    .servicios__container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .servicios__persona-description{
+        
+        width: 532px;
+        justify-self: center;
+    }
+
+}
+
+@media screen and (min-width: 767px){
+    body{
+        margin: 0;
+    }
+    
+    .nav{
+        height: 4.5rem;
+        // margin-top: 1rem;
+    }
+
+    .figures-top{
+        display: inline;
+    }
+
+    .section{
+        padding: 4rem 0 2rem;
+    }
+
+    .home__see-more{
+        margin-top: 0;
+    }
+
+    .main-logo{
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .nav{
+        
+        &__list{
+            flex-direction: row; 
+            column-gap: 1.5rem;
+        }
+        &__toggle{
+            display: none;  // se oculta el icono grid
+        }
+    }
+
+    .log{
+        display: none; // oculta la palabra login del menu
+    }
+    .button__header{ // la palabra login se remplaza por un botón con la misma funcionalidad
+        padding: 0;
+        width: 3rem;
+        height: 3rem;
+        display: flex;
+        border-radius: 100%;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+}
+
+
+@media screen and (min-width: 968px) {
+
+    .nav{
+        max-width: 90%;
+    }
+    .home{
+        &__container{
+            padding: 3rem 2rem;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+        }
+        &__title{
+            font-size: 3rem;
+            line-height: 4rem;
+        }
+    }
+
+    .main{
+
+        &-title{
+            font-size: 1.5rem;
+        }
+        &-logo{
+            width: 3rem;
+            height: 3rem;
+        }
+    }
+    .oferta{
+        &__container{
+            display: flex;
+            padding: 2rem 3rem;
+            margin-right: 2rem;
+            margin-left: 2rem;
+
+        }
+        &__content{
+            display: flex;
+            column-gap: 2rem;
+            grid-auto-flow: column;
+            align-items: center;
+        }
+
+        &__img{
+            width: 30rem;
+        }
+    }
+
+    .servicios{
+        &__persona-description{
+        
+            width: 100%;
+            justify-self: center;
+        }
+
+        &__personas{
+            padding-top: 1rem;
+            grid-auto-flow: column;
+            column-gap: 2rem;
+        }
+
+        &__container{
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+    }
+
+    .contacto{
+        &__container{
+            grid-template-columns: 3fr 1.5fr 1.25fr;
+        }
+
+        &__description{
+            text-align: left;
+        }
+    }
+
+    .footer{
+        &__container{
+            grid-template-columns: repeat(5, 1fr);
+        }
+        &__social{
+            align-items: flex-start;
+            align-items:center ;
+            &-link{
+                .footer__social-icon{
+                    width: 2rem;
+                }
+            }
+        }
+    } 
+}
+
+@media screen and (min-width: 1024px) {
+
+
+    .container{
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .home{
+        &__container{
+            padding: 2rem 2rem;
+            grid-template-columns: 1fr 1.3fr;
+            align-items: center;
+        }
+        &__title{
+            font-size: 3rem;
+            line-height: 4rem;
+        }
+    }
+
+    .oferta{
+
+        &__content{
+            display: flex;
+            column-gap: 3rem;
+            grid-auto-flow: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &__img{
+            width: 35rem;
+        }
+
+        &__main-tilte{
+            padding-top: 2rem;
+        }
+    }
+
+    // .grid{
+    //     gap: 2rem;
+    // }
+
+    .section{
+        padding: 4rem 0 1rem;
+
+    }
+
+    .servicios{
+        max-width: 85%;
+
+        &__main-title{
+            padding-top: 2rem;
+        }
+    }
+}
+

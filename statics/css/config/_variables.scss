@@ -1,0 +1,49 @@
+:root{
+    --header-height: 3rem;
+    //===================== HSL - Tono ===================== 
+    --hue: 223;
+
+    // Color Variable:
+    --primary-color: hsl(var(--hue), 89%, 79%);
+    --primary-color-alt: hsl(var(--hue), 89%, 69%);
+    --primary-color-light: hsl(var(--hue), 88%, 87%);
+    --color-light: hsl(var(--hue),90%, 92%);
+    --body-color: hsl(var(--hue), 5%, 95%);
+    --color-transparent: hsl(var(--hue), 89%, 79%, 50%);
+    --color-white: #ffffff; // white
+    // Text color:
+    --title-color: hsl(var(--hue), 28%, 9%);
+    --text-color: hsl(var(--hue), 4%, 30%);
+    // Font and typography:
+    --body-font: 'Poppins', sans-serif;
+    --biggest-font-size:1.8rem; // Title size for mobile devices
+    --h2-font-size:1.25rem;
+    --h3-font-size:1.125rem;
+    --normal-font-size:.938rem;
+    --small-font-size:.813rem;
+    --smallest-font-size:.75rem;
+
+    --font-semi-bold: 600;
+    --font-bold:700;
+
+    // Z-index
+    --z-tooltip: 10;
+    --z-element: 20;
+    --z-fixed: 100;
+
+    // Margins
+    --mb-0-5: .5rem;
+    --mb-0-75:.75rem;
+    --mb-1:1rem;
+    --mb-1-5:1.5rem;
+    --mb-2:2rem;
+    
+    @media screen and (min-widht: 968px){
+        --biggest-font-size: 3rem;
+        --h2-font-size:1.75rem;
+        --h3-font-size:1.25rem;
+        --normal-font-size:1rem;
+        --small-font-size:.875rem;
+        --smallest-font-size:.813rem;
+    }
+}

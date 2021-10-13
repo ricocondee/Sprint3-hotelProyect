@@ -1,0 +1,14 @@
+::-webkit-scrollbar{
+    width: .7rem;
+    border-radius: .5rem;
+    background-color: var(--color-light);
+
+    &-thumb{
+        background-color: var(--primary-color);
+        border-radius: .5rem;
+
+        &:hover{
+            background-color: var(--primary-color-alt);
+        }
+    }
+}

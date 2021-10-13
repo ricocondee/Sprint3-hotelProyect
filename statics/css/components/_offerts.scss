@@ -1,0 +1,93 @@
+/*============================== OFERTAS ==============================*/
+.oferta{
+    // padding: 0 1rem;
+
+    &__container{
+        overflow: initial;
+        // margin-bottom: 1rem;
+    }
+
+    &__content{
+        padding: 0 1.5rem;
+    }
+
+    &__img{
+        margin-top: 1rem;
+        width: 275px;
+        border-radius: 1rem;
+        justify-self: center;
+    }
+
+    &__title{
+        font-size: var(--h3-font-size);
+        margin-bottom: var(--mb-0-5);
+        // padding: 0 1rem;
+        text-align: center;
+    }
+    &__description{
+        margin-bottom: var(--mb-0-75);
+        // padding: 0 1rem;
+    }
+
+    &__button{
+        
+
+        .arrow__icon{
+            vertical-align: middle;
+            transform: translateX(-.1rem);
+            transition: transform .3s;
+        }
+
+        &:hover .arrow__icon{
+            transform: translate(.25rem);
+        }
+    }
+
+    &__main__description{
+        display: flex;
+        justify-content: center;
+        margin-left: var(--mb-1-5);
+        margin-right: var(--mb-1-5);
+    }
+
+
+
+}
+.oferta__main-tilte{
+    font-size: 1.5rem;
+}
+
+.swiper-oferta-icon{
+    width: 2rem;
+    fill: var(--primary-color-alt);
+}
+
+.swiper-button-prev{
+    left: .3rem;
+    &.swiper-button-prev::after{
+        content: '';
+    }
+}
+
+.swiper-button-next{
+    right: .3rem;
+    &.swiper-button-next::after{
+        content: '';
+    }
+}
+
+.swiper-container-horizontal>.swiper-pagination-bullets{
+    bottom: -2rem;
+}
+
+.swiper-pagination-bullet-active{
+    background-color: var(--primary-color);
+}
+
+.swiper-button-prev,
+.swiper-button-next,
+.swiprer-pagination-bullet{
+    outline: none;
+}
+
+

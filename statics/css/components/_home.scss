@@ -1,0 +1,45 @@
+/*=============================== HOME ===============================*/
+.home{
+
+    &__container{
+        row-gap: 1rem;
+    }
+    &__title{
+        font-size: var(--biggest-font-size);
+        font-weight: var(--font-bold);
+        line-height: 2.5rem;
+        margin-bottom: var(--mb-0-5);
+    }
+    &__description{
+        margin-bottom: var(--mb-1);
+    }
+    &__description-2{
+        display: none;
+        margin-bottom: var(--mb-1);
+    }
+    &__description-3{
+        display: none;
+        margin-bottom: var(--mb-1);
+    }
+
+    &__see-more{
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        font-size: 1rem;
+        color: var(--text-color);
+    }
+    &__arrow{
+        fill: var(--text-color);
+    }
+
+    // &__data{
+    //     z-index: 140;
+    // }
+
+}
+
+.figures-top{
+    display: none;
+}

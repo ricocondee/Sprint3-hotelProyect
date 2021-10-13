@@ -1,0 +1,102 @@
+/*============================ HEADER ============================*/
+.main-logo{
+    fill: var(--text-color);
+    z-index: 130;
+    width: 2rem;
+    height: 2rem;
+}
+
+.main-title{
+    z-index: 130;
+}
+
+.header{
+    width: 100%;
+    background-color: var(--body-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: var(--z-fixed);
+    transition: .5s;   // Para animacion a modo oscuro
+}
+
+/*============================ NAV ============================*/
+
+.nav{
+    height: var(--header-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+    &__menu{
+        @media screen and (max-width: 767px) {
+            // mientras que el width maximo se mantenga dentro de 767 pixeles
+            // se aplicarán los siguientes estilos:
+            position: fixed;
+            background-color: var(--color-white);
+            box-shadow: 0 0 4px rgba(0, 0, 0, .1);
+            padding: 2.5rem 0 ;
+            width: 90%;
+            top: -100%;  // -100%  3rem -- Desplazo el menu completamente hacia arriba
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            transition: .5s; // tiempo en que tarda en desplazarze el menu una vez
+            //se haya aplicado la funcionalidad con JavaScript
+            border-radius: 2rem;
+            z-index: var(--z-fixed);
+        }
+    }
+
+    &__list{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 1.5rem;
+    }
+
+    &__link, &__logo, &__toggle{
+
+        color: var(--title-color);
+        fill: var(--text-color);  // the grid icon
+        font-weight: var(--font-semi-bold);
+    }
+
+    &__toggle{
+        display: flex;
+        cursor: pointer;
+        justify-content:center ;
+        
+    }
+}
+
+.show-menu{  // Escta clase se aplica unicamente con Javascript
+    /* Se calcula --header-height = 3rem + 1rem para ubucar nuevamente el menú*/
+    top: calc(var(--header-height) + 1rem); // son en total 4rem
+}
+
+/*=========================  FIGURAS DE LA ESQUINA =========================*/
+.figure-1{
+    z-index: 120;
+    position: absolute;
+    background-color: var(--color-transparent);
+    width: 400px;
+    height: 400px;
+    border-radius: 60% 0 60% 0;
+    transform: rotate(-45deg);
+    top: -5rem;
+    left: -13rem;
+}
+.figure-2{
+    z-index: 120;
+    // display: block;
+    position: absolute;
+    background-color: var(--color-transparent);
+    width: 400px;
+    height: 400px;
+    border-radius:0 60% 0 60% ;
+    transform: rotate(-38deg);
+    top: -16rem;
+    left: -3rem;
+}
