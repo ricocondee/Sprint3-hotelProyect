@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/reservation.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<body>
+    <header class="header" id="header">
+
+        <div class="figures-top">
+            <div class="figure-1"></div>
+            <div class="figure-2"></div>
+        </div>
+
+        <nav class="nav container">
+            <!-- <svg class="main-logo" version="1.0" xmlns="http://www.w3.org/2000/svg" width="24px" height="34px" viewBox="0 0 240.000000 459.000000" preserveAspectRatio="xMidYMid meet"><g transform="translate(0.000000,459.000000) scale(0.100000,-0.100000)" stroke="none">
+                <path d="M1162 4529 l-72 -50 0 -194 0 -194 -105 -63 -105 -63 -2 -199 -3 -199 -102 -61 -103 -60 0 -226 0 -226 -100 -59 -100 -58 0 -968 0 -968 -80 -48 -80 -48 0 -367 0 -368 385 0 385 0 5 23 c2 12 16 96 31 187 14 91 32 177 40 192 32 62 130 78 182 30 35 -33 33 -26 71 -235 16 -87 32 -161 36 -165 5 -5 514 -28 713 -31 l42 -1 0 368 0 367 -100 59 -100 58 0 957 0 957 -102 60 -103 61 -3 226 -2 227 -100 57 -99 58 -1 200 -1 200 -102 61 -102 62 -3 195 -2 195 -73 50 -73 51 -72 -50z m128 -240 c0 -134 -2 -139 -42 -118 -14 8 -23 8 -31 0 -6 -6 -17 -11 -24 -11 -10 0 -13 30 -13 129 0 128 0 130 26 150 l26 21 29 -21 29 -20 0 -130z m74 -305 l126 -75 0 -140 0 -140 -22 12 c-13 7 -50 29 -83 49 -33 20 -81 48 -106 62 l-46 27 -124 -74 c-68 -40 -128 -70 -132 -66 -4 4 -6 66 -5 137 l3 129 125 77 c69 43 128 78 132 78 4 0 63 -34 132 -76z m14 -424 c57 -35 106 -68 108 -75 3 -6 3 -68 2 -138 l-3 -126 -80 50 c-44 28 -100 61 -125 74 -53 27 -50 28 -208 -68 -51 -31 -94 -57 -97 -57 -2 0 -4 60 -4 134 l-1 133 62 39 c199 122 202 124 223 110 11 -7 67 -41 123 -76z m-498 -263 l0 -142 -45 -28 c-25 -15 -50 -27 -55 -27 -6 0 -10 59 -10 144 l0 144 48 30 c26 16 50 27 55 25 4 -2 7 -68 7 -146z m818 -51 c2 -101 -1 -146 -8 -146 -6 0 -31 12 -56 26 l-44 26 0 150 0 150 53 -31 52 -30 3 -145z m-208 -298 c0 -65 -2 -118 -5 -118 -2 0 -59 32 -125 71 -67 39 -128 68 -136 65 -8 -3 -64 -35 -124 -71 -61 -36 -115 -65 -120 -65 -7 0 -10 42 -8 116 l3 117 129 77 129 77 128 -76 129 -76 0 -117z m-610 -66 l0 -118 -55 -31 -55 -32 0 119 0 118 48 30 c26 17 50 31 55 31 4 1 7 -52 7 -117z m770 87 l50 -31 0 -119 0 -119 -52 30 -53 30 -3 120 c-1 66 0 120 3 120 2 0 27 -14 55 -31z m-984 -385 c-2 -6 -25 -23 -50 -37 l-47 -26 3 151 3 152 45 26 45 26 3 -140 c1 -77 1 -145 -2 -152z m1232 87 l3 -153 -38 23 c-21 13 -46 28 -56 33 -16 10 -18 26 -16 151 0 77 3 143 5 147 3 4 26 -5 52 -21 l47 -27 3 -153z m-425 -11 l226 -135 1 -132 c0 -73 -4 -133 -9 -133 -4 0 -107 59 -227 131 -120 73 -224 132 -229 132 -11 0 -251 -139 -379 -220 -38 -23 -73 -43 -78 -43 -4 0 -8 60 -8 133 l0 132 228 137 c125 75 232 136 238 135 6 -1 113 -63 237 -137z m-803 -335 l0 -134 -43 -26 c-24 -14 -47 -25 -50 -25 -4 0 -7 60 -7 134 l0 135 43 24 c23 14 45 25 50 26 4 1 7 -60 7 -134z m1181 108 l49 -28 0 -132 c0 -73 -2 -133 -5 -133 -11 0 -70 32 -87 48 -15 13 -18 34 -18 144 0 70 3 128 6 128 3 0 28 -12 55 -27z m-484 -189 c59 -37 132 -82 161 -100 l52 -34 0 -165 c0 -110 -4 -165 -11 -165 -5 0 -70 35 -142 78 -73 44 -142 84 -154 91 -20 10 -39 2 -174 -79 -83 -49 -155 -90 -160 -90 -5 0 -9 74 -9 168 l0 167 83 50 c45 27 116 71 157 97 41 27 78 48 82 48 4 0 55 -30 115 -66z m-559 -321 l-3 -227 -110 -67 c-60 -37 -113 -68 -117 -68 -5 -1 -8 102 -8 228 l0 229 113 66 c61 36 115 66 120 66 4 0 6 -102 5 -227z m1000 147 l92 -54 0 -219 0 -219 -37 22 c-21 12 -66 39 -100 59 l-63 36 0 218 c0 120 3 217 8 215 4 -1 49 -28 100 -58z m-308 -400 l75 -46 1 -197 c1 -109 -2 -199 -5 -201 -3 -3 -76 38 -161 89 -124 75 -158 91 -173 83 -10 -5 -81 -47 -158 -94 -77 -46 -142 -84 -145 -84 -2 0 -4 92 -4 204 l0 203 161 96 162 95 86 -51 c47 -28 120 -71 161 -97z m-692 -326 l-3 -206 -62 -35 -63 -35 0 205 0 205 58 35 c31 19 60 36 65 36 4 1 6 -92 5 -205z m1005 138 c15 -13 17 -37 17 -214 0 -109 -2 -198 -4 -198 -3 0 -32 16 -65 35 l-61 36 0 205 0 206 48 -27 c26 -15 55 -35 65 -43z"/></g>
+            </svg> -->
+
+            <!-- NUEVO LOGO -->
+            <svg class="main-logo" version="1.0" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px"
+                viewBox="0 0 51.000000 51.000000" preserveAspectRatio="xMidYMid meet">
+                <g transform="translate(0.000000,51.000000) scale(0.100000,-0.100000)" stroke="none">
+                    <path
+                        d="M183 500 c-18 -4 -45 -16 -60 -26 l-28 -19 35 -6 35 -6 -42 -2 c-29 -1 -51 -9 -73 -27 -27 -23 -31 -32 -28 -67 2 -25 10 -44 21 -51 15 -9 24 -4 57 32 47 50 81 55 121 16 l28 -27 31 27 c44 36 81 34 115 -6 39 -47 53 -53 76 -32 52 47 -9 132 -98 135 l-38 2 35 6 35 6 -26 18 c-52 35 -123 45 -196 27z m97 -95 c-13 -14 -27 -25 -32 -25 -9 0 42 49 51 50 3 0 -6 -11 -19 -25z" />
+                    <path
+                        d="M137 353 c-4 -3 -8 -22 -8 -42 -1 -24 -3 -28 -6 -13 l-4 23 -30 -25 c-24 -21 -34 -24 -55 -16 -14 6 -27 10 -30 10 -10 0 -3 -48 9 -65 12 -16 18 -16 47 -6 18 6 35 9 38 6 4 -4 -22 -17 -60 -29 -22 -7 -24 -34 -3 -42 44 -17 95 29 74 67 -8 15 -8 24 0 32 8 8 11 4 11 -15 0 -15 9 -32 23 -41 18 -13 19 -16 5 -16 -24 -1 -23 -33 1 -55 12 -11 31 -16 53 -14 28 2 34 7 36 31 2 17 -2 29 -12 33 -25 9 -7 33 25 32 37 -1 45 -13 25 -34 -43 -42 17 -85 75 -54 21 12 27 60 7 60 -6 0 -2 10 10 23 12 13 22 29 22 37 0 10 4 9 18 -3 9 -8 30 -19 46 -23 32 -8 46 6 46 48 0 25 -2 26 -35 21 -26 -4 -41 -1 -55 12 -19 18 -20 17 -20 -10 0 -41 -13 -22 -19 28 -5 37 -9 42 -34 45 -20 2 -35 -5 -57 -27 l-30 -29 -29 29 c-27 27 -69 38 -84 22z m54 -73 c25 -14 24 -30 -1 -30 -11 0 -20 2 -20 4 0 2 -3 11 -6 20 -7 19 0 20 27 6z m146 -15 c-7 -16 -37 -21 -37 -5 0 10 32 31 39 25 2 -2 1 -11 -2 -20z" />
+                    <path
+                        d="M397 223 c-25 -24 13 -73 57 -73 23 0 27 4 24 22 -2 13 -11 24 -23 26 -11 2 -27 10 -36 18 -9 8 -19 11 -22 7z" />
+                    <path
+                        d="M90 145 c-7 -8 -19 -15 -27 -15 -26 0 -9 -35 18 -38 31 -4 53 20 44 48 -8 24 -18 25 -35 5z" />
+                    <path
+                        d="M382 143 c-14 -26 3 -53 33 -53 14 0 29 8 35 20 9 16 8 20 -6 20 -10 0 -25 7 -35 16 -16 14 -18 14 -27 -3z" />
+                    <path
+                        d="M117 85 c-25 -35 -13 -48 35 -40 35 6 39 5 36 -12 -4 -24 39 -32 48 -9 6 17 -26 48 -74 74 -29 15 -23 16 -45 -13z" />
+                    <path
+                        d="M227 96 c-15 -12 -15 -15 -2 -26 16 -13 65 -6 65 10 0 8 -32 31 -42 30 -2 0 -11 -7 -21 -14z" />
+                    <path
+                        d="M334 96 c-11 -6 -28 -19 -37 -28 -9 -9 -21 -18 -27 -20 -17 -5 0 -38 19 -38 19 0 53 20 34 20 -7 0 -13 5 -13 11 0 8 13 10 37 6 52 -9 71 9 42 40 -25 26 -26 26 -55 9z" />
+                </g>
+            </svg>
+
+
+            <a class="main-title" href="index.html">
+                <p><b>JW Marriott </b>Marquis Dubai</p>
+            </a>
+
+
+            <div class="nav__menu" id="nav-menu">
+                <!--En este elemento se añade en el class: "show-menu"-->
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link">Home</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#oferta" class="nav__link">Ofertas</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#servicios" class="nav__link">Nuestros Servicios</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#contacto" class="nav__link">Contacto</a>
+                    </li>
+                    <li class="nav__item log">
+                        <a href="#login" class="nav__link">Login</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <!-- Icono grid de menú -->
+                <svg class="nav__logo" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path
+                        d="M10 3H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM9 9H5V5h4v4zm5 2h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1zm1-6h4v4h-4V5zM3 20a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v6zm2-5h4v4H5v-4zm8 5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-6a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6zm2-5h4v4h-4v-4z">
+                    </path>
+                </svg>
+            </div>
+
+            <!-- Botón de login -->
+            <!-- <div class="button button__header"> -->
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="fill: rgba(0, 0, 0, 1)"><path d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"></path></svg> -->
+            <a href="login.html" class="button button__header">Login</a>
+            <!-- Login -->
+            <!-- </div> -->
+        </nav>
+    </header>
+    <div class="container-forms">
+        <div class="title-container">
+            <h1 class="title">Reservar habitacion</h1>
+        </div>
+        <div class="form-reservation">
+            <form action="" id="reserve" method="">
+                <h3>Nombre completo</h3><input required id="name" type="text" placeholder="Nombres">
+                <input required id="lastname" type="text" placeholder="Apellidos">
+                <h3>Correo electronico</h3>
+                <input required id="email" type="text" placeholder="Email">
+                <input required id="confirm-email" type="text" placeholder="Confirme Email">
+                <h3>Numero de telefono</h3>
+                <input required type="tel" id="phone-number" placeholder="(+123 0000000000)">
+                <h3>Fecha de llegada</h3>
+                <input required type="date" id="check-in">
+                <h3>Fecha de salida</h3>
+                <input required type="date" id="check-out">
+                <h3>Idioma de preferencia</h3>
+                <select name="lang" id="list-languages">
+                    <option id="Afrikanns">Afrikanns</option>
+                    <option id="Albanian">Albanian</option>
+                    <option id="Arabic">Arabic</option>
+                    <option id="Armenian">Armenian</option>
+                    <option id="Basque">Basque</option>
+                    <option id="Bengali">Bengali</option>
+                    <option id="Bulgarian">Bulgarian</option>
+                    <option id="Catalan">Catalan</option>
+                    <option id="Cambodian">Cambodian</option>
+                    <option id="Chinese (Mandarin)">Chinese (Mandarin)</option>
+                    <option id="Croation">Croation</option>
+                    <option id="Czech">Czech</option>
+                    <option id="Danish">Danish</option>
+                    <option id="Dutch">Dutch</option>
+                    <option id="English">English</option>
+                    <option id="Estonian">Estonian</option>
+                    <option id="Fiji">Fiji</option>
+                    <option id="Finnish">Finnish</option>
+                    <option id="French">French</option>
+                    <option id="Georgian">Georgian</option>
+                    <option id="German">German</option>
+                    <option id="Greek">Greek</option>
+                    <option id="Gujarati">Gujarati</option>
+                    <option id="Hebrew">Hebrew</option>
+                    <option id="Hindi">Hindi</option>
+                    <option id="Hungarian">Hungarian</option>
+                    <option id="Icelandic">Icelandic</option>
+                    <option id="Indonesian">Indonesian</option>
+                    <option id="Irish">Irish</option>
+                    <option id="Italian">Italian</option>
+                    <option id="Japanese">Japanese</option>
+                    <option id="Javanese">Javanese</option>
+                    <option id="Korean">Korean</option>
+                    <option id="Latin">Latin</option>
+                    <option id="Latvian">Latvian</option>
+                    <option id="Lithuanian">Lithuanian</option>
+                    <option id="Macedonian">Macedonian</option>
+                    <option id="Malay">Malay</option>
+                    <option id="Malayalam">Malayalam</option>
+                    <option id="Maltese">Maltese</option>
+                    <option id="Maori">Maori</option>
+                    <option id="Marathi">Marathi</option>
+                    <option id="Mongolian">Mongolian</option>
+                    <option id="Nepali">Nepali</option>
+                    <option id="Norwegian">Norwegian</option>
+                    <option id="Persian">Persian</option>
+                    <option id="Polish">Polish</option>
+                    <option id="Portuguese">Portuguese</option>
+                    <option id="Punjabi">Punjabi</option>
+                    <option id="Quechua">Quechua</option>
+                    <option id="Romanian">Romanian</option>
+                    <option id="Russian">Russian</option>
+                    <option id="Samoan">Samoan</option>
+                    <option id="Serbian">Serbian</option>
+                    <option id="Slovak">Slovak</option>
+                    <option id="Slovenian">Slovenian</option>
+                    <option id="Spanish" selected>Spanish</option>
+                    <option id="Swahili">Swahili</option>
+                    <option id="Swedish ">Swedish </option>
+                    <option id="Tamil">Tamil</option>
+                    <option id="Tatar">Tatar</option>
+                    <option id="Telugu">Telugu</option>
+                    <option id="Thai">Thai</option>
+                    <option id="Tibetan">Tibetan</option>
+                    <option id="Tonga">Tonga</option>
+                    <option id="Turkish">Turkish</option>
+                    <option id="Ukranian">Ukranian</option>
+                    <option id="Urdu">Urdu</option>
+                    <option id="Uzbek">Uzbek</option>
+                    <option id="Vietnamese">Vietnamese</option>
+                    <option id="Welsh">Welsh</option>
+                    <option id="Xhosa">Xhosa</option>
+                </select>
+                <h3>Pais de origen</h3>
+                <select required name="country" id="list-countries">
+                    <option id="AF">Afganistán</option>
+                    <option id="AL">Albania</option>
+                    <option id="DE">Alemania</option>
+                    <option id="AD">Andorra</option>
+                    <option id="AO">Angola</option>
+                    <option id="AI">Anguilla</option>
+                    <option id="AQ">Antártida</option>
+                    <option id="AG">Antigua y Barbuda</option>
+                    <option id="AN">Antillas Holandesas</option>
+                    <option id="SA">Arabia Saudí</option>
+                    <option id="DZ">Argelia</option>
+                    <option id="AR">Argentina</option>
+                    <option id="AM">Armenia</option>
+                    <option id="AW">Aruba</option>
+                    <option id="AU">Australia</option>
+                    <option id="AT">Austria</option>
+                    <option id="AZ">Azerbaiyán</option>
+                    <option id="BS">Bahamas</option>
+                    <option id="BH">Bahrein</option>
+                    <option id="BD">Bangladesh</option>
+                    <option id="BB">Barbados</option>
+                    <option id="BE">Bélgica</option>
+                    <option id="BZ">Belice</option>
+                    <option id="BJ">Benin</option>
+                    <option id="BM">Bermudas</option>
+                    <option id="BY">Bielorrusia</option>
+                    <option id="MM">Birmania</option>
+                    <option id="BO">Bolivia</option>
+                    <option id="BA">Bosnia y Herzegovina</option>
+                    <option id="BW">Botswana</option>
+                    <option id="BR">Brasil</option>
+                    <option id="BN">Brunei</option>
+                    <option id="BG">Bulgaria</option>
+                    <option id="BF">Burkina Faso</option>
+                    <option id="BI">Burundi</option>
+                    <option id="BT">Bután</option>
+                    <option id="CV">Cabo Verde</option>
+                    <option id="KH">Camboya</option>
+                    <option id="CM">Camerún</option>
+                    <option id="CA">Canadá</option>
+                    <option id="TD">Chad</option>
+                    <option id="CL">Chile</option>
+                    <option id="CN">China</option>
+                    <option id="CY">Chipre</option>
+                    <option id="VA">Ciudad del Vaticano (Santa Sede)</option>
+                    <option id="CO" selected>Colombia</option>
+                    <option id="KM">Comores</option>
+                    <option id="CG">Congo</option>
+                    <option id="CD">Congo, República Democrática del</option>
+                    <option id="KR">Corea</option>
+                    <option id="KP">Corea del Norte</option>
+                    <option id="CI">Costa de Marfíl</option>
+                    <option id="CR">Costa Rica</option>
+                    <option id="HR">Croacia (Hrvatska)</option>
+                    <option id="CU">Cuba</option>
+                    <option id="DK">Dinamarca</option>
+                    <option id="DJ">Djibouti</option>
+                    <option id="DM">Dominica</option>
+                    <option id="EC">Ecuador</option>
+                    <option id="EG">Egipto</option>
+                    <option id="SV">El Salvador</option>
+                    <option id="AE">Emiratos Árabes Unidos</option>
+                    <option id="ER">Eritrea</option>
+                    <option id="SI">Eslovenia</option>
+                    <option id="ES">España</option>
+                    <option id="US">Estados Unidos</option>
+                    <option id="EE">Estonia</option>
+                    <option id="ET">Etiopía</option>
+                    <option id="FJ">Fiji</option>
+                    <option id="PH">Filipinas</option>
+                    <option id="FI">Finlandia</option>
+                    <option id="FR">Francia</option>
+                    <option id="GA">Gabón</option>
+                    <option id="GM">Gambia</option>
+                    <option id="GE">Georgia</option>
+                    <option id="GH">Ghana</option>
+                    <option id="GI">Gibraltar</option>
+                    <option id="GD">Granada</option>
+                    <option id="GR">Grecia</option>
+                    <option id="GL">Groenlandia</option>
+                    <option id="GP">Guadalupe</option>
+                    <option id="GU">Guam</option>
+                    <option id="GT">Guatemala</option>
+                    <option id="GY">Guayana</option>
+                    <option id="GF">Guayana Francesa</option>
+                    <option id="GN">Guinea</option>
+                    <option id="GQ">Guinea Ecuatorial</option>
+                    <option id="GW">Guinea-Bissau</option>
+                    <option id="HT">Haití</option>
+                    <option id="HN">Honduras</option>
+                    <option id="HU">Hungría</option>
+                    <option id="IN">India</option>
+                    <option id="ID">Indonesia</option>
+                    <option id="IQ">Irak</option>
+                    <option id="IR">Irán</option>
+                    <option id="IE">Irlanda</option>
+                    <option id="BV">Isla Bouvet</option>
+                    <option id="CX">Isla de Christmas</option>
+                    <option id="IS">Islandia</option>
+                    <option id="KY">Islas Caimán</option>
+                    <option id="CK">Islas Cook</option>
+                    <option id="CC">Islas de Cocos o Keeling</option>
+                    <option id="FO">Islas Faroe</option>
+                    <option id="HM">Islas Heard y McDonald</option>
+                    <option id="FK">Islas Malvinas</option>
+                    <option id="MP">Islas Marianas del Norte</option>
+                    <option id="MH">Islas Marshall</option>
+                    <option id="UM">Islas menores de Estados Unidos</option>
+                    <option id="PW">Islas Palau</option>
+                    <option id="SB">Islas Salomón</option>
+                    <option id="SJ">Islas Svalbard y Jan Mayen</option>
+                    <option id="TK">Islas Tokelau</option>
+                    <option id="TC">Islas Turks y Caicos</option>
+                    <option id="VI">Islas Vírgenes (EEUU)</option>
+                    <option id="VG">Islas Vírgenes (Reino Unido)</option>
+                    <option id="WF">Islas Wallis y Futuna</option>
+                    <option id="IL">Israel</option>
+                    <option id="IT">Italia</option>
+                    <option id="JM">Jamaica</option>
+                    <option id="JP">Japón</option>
+                    <option id="JO">Jordania</option>
+                    <option id="KZ">Kazajistán</option>
+                    <option id="KE">Kenia</option>
+                    <option id="KG">Kirguizistán</option>
+                    <option id="KI">Kiribati</option>
+                    <option id="KW">Kuwait</option>
+                    <option id="LA">Laos</option>
+                    <option id="LS">Lesotho</option>
+                    <option id="LV">Letonia</option>
+                    <option id="LB">Líbano</option>
+                    <option id="LR">Liberia</option>
+                    <option id="LY">Libia</option>
+                    <option id="LI">Liechtenstein</option>
+                    <option id="LT">Lituania</option>
+                    <option id="LU">Luxemburgo</option>
+                    <option id="MK">Macedonia, Ex-República Yugoslava de</option>
+                    <option id="MG">Madagascar</option>
+                    <option id="MY">Malasia</option>
+                    <option id="MW">Malawi</option>
+                    <option id="MV">Maldivas</option>
+                    <option id="ML">Malí</option>
+                    <option id="MT">Malta</option>
+                    <option id="MA">Marruecos</option>
+                    <option id="MQ">Martinica</option>
+                    <option id="MU">Mauricio</option>
+                    <option id="MR">Mauritania</option>
+                    <option id="YT">Mayotte</option>
+                    <option id="MX">México</option>
+                    <option id="FM">Micronesia</option>
+                    <option id="MD">Moldavia</option>
+                    <option id="MC">Mónaco</option>
+                    <option id="MN">Mongolia</option>
+                    <option id="MS">Montserrat</option>
+                    <option id="MZ">Mozambique</option>
+                    <option id="NA">Namibia</option>
+                    <option id="NR">Nauru</option>
+                    <option id="NP">Nepal</option>
+                    <option id="NI">Nicaragua</option>
+                    <option id="NE">Níger</option>
+                    <option id="NG">Nigeria</option>
+                    <option id="NU">Niue</option>
+                    <option id="NF">Norfolk</option>
+                    <option id="NO">Noruega</option>
+                    <option id="NC">Nueva Caledonia</option>
+                    <option id="NZ">Nueva Zelanda</option>
+                    <option id="OM">Omán</option>
+                    <option id="NL">Países Bajos</option>
+                    <option id="PA">Panamá</option>
+                    <option id="PG">Papúa Nueva Guinea</option>
+                    <option id="PK">Paquistán</option>
+                    <option id="PY">Paraguay</option>
+                    <option id="PE">Perú</option>
+                    <option id="PN">Pitcairn</option>
+                    <option id="PF">Polinesia Francesa</option>
+                    <option id="PL">Polonia</option>
+                    <option id="PT">Portugal</option>
+                    <option id="PR">Puerto Rico</option>
+                    <option id="QA">Qatar</option>
+                    <option id="UK">Reino Unido</option>
+                    <option id="CF">República Centroafricana</option>
+                    <option id="CZ">República Checa</option>
+                    <option id="ZA">República de Sudáfrica</option>
+                    <option id="DO">República Dominicana</option>
+                    <option id="SK">República Eslovaca</option>
+                    <option id="RE">Reunión</option>
+                    <option id="RW">Ruanda</option>
+                    <option id="RO">Rumania</option>
+                    <option id="RU">Rusia</option>
+                    <option id="EH">Sahara Occidental</option>
+                    <option id="KN">Saint Kitts y Nevis</option>
+                    <option id="WS">Samoa</option>
+                    <option id="AS">Samoa Americana</option>
+                    <option id="SM">San Marino</option>
+                    <option id="VC">San Vicente y Granadinas</option>
+                    <option id="SH">Santa Helena</option>
+                    <option id="LC">Santa Lucía</option>
+                    <option id="ST">Santo Tomé y Príncipe</option>
+                    <option id="SN">Senegal</option>
+                    <option id="SC">Seychelles</option>
+                    <option id="SL">Sierra Leona</option>
+                    <option id="SG">Singapur</option>
+                    <option id="SY">Siria</option>
+                    <option id="SO">Somalia</option>
+                    <option id="LK">Sri Lanka</option>
+                    <option id="PM">St Pierre y Miquelon</option>
+                    <option id="SZ">Suazilandia</option>
+                    <option id="SD">Sudán</option>
+                    <option id="SE">Suecia</option>
+                    <option id="CH">Suiza</option>
+                    <option id="SR">Surinam</option>
+                    <option id="TH">Tailandia</option>
+                    <option id="TW">Taiwán</option>
+                    <option id="TZ">Tanzania</option>
+                    <option id="TJ">Tayikistán</option>
+                    <option id="TF">Territorios franceses del Sur</option>
+                    <option id="TP">Timor Oriental</option>
+                    <option id="TG">Togo</option>
+                    <option id="TO">Tonga</option>
+                    <option id="TT">Trinidad y Tobago</option>
+                    <option id="TN">Túnez</option>
+                    <option id="TM">Turkmenistán</option>
+                    <option id="TR">Turquía</option>
+                    <option id="TV">Tuvalu</option>
+                    <option id="UA">Ucrania</option>
+                    <option id="UG">Uganda</option>
+                    <option id="UY">Uruguay</option>
+                    <option id="UZ">Uzbekistán</option>
+                    <option id="VU">Vanuatu</option>
+                    <option id="VE">Venezuela</option>
+                    <option id="VN">Vietnam</option>
+                    <option id="YE">Yemen</option>
+                    <option id="YU">Yugoslavia</option>
+                    <option id="ZM">Zambia</option>
+                    <option id="ZW">Zimbabue</option>
+                </select>
+                <h3>Numero de huespedes</h3>
+                <input required type="number" id="number-of-adults" placeholder="Adultos">
+                <input required type="number" id="number-of-kids" placeholder="Niños (Menor de 18)">
+                <h3>Peticiones especiales</h3>
+                <textarea id="petitions" placeholder="Maximo 500 caracteres" maxlength="500"></textarea>
+                <div>
+                    <label for="policies">Declaro haber
+                        leído y aceptar las
+                        <a href="/static/images/JW-Marriott-Policies.pdf" target="_blank">Politicas de Privacidad</a> del Hotel y la normativa sobre
+                        protección de datos.</label>
+                    <input required type="checkbox" name="policies" id="policies">
+                </div>
+                <button>Continuar al pago</button>
+            </form>
+        </div>
+    </div>
+    <footer class="footer section">
+        <div class="footer__container container grid">
+            <div class="footer__content">
+                <a href="#" class="footer__logo">Descubre</a>
+                <p class="footer__description">Ordena ahora<br>y obten descuentos</p>
+            </div>
+            <!--==================== First part ====================-->
+            <div class="footer__content">
+                <h3 class="footer__title">Nuestros servicios</h3>
+                <ul class="footer__links">
+                    <li><a href="#" class="footer__link">precios</a></li>
+                    <li><a href="#" class="footer__link">Descuentos</a></li>
+                    <li><a href="#" class="footer__link">Reportar</a></li>
+                    <li><a href="#" class="footer__link">Terminos y condiciones</a></li>
+                </ul>
+            </div>
+
+            <!--==================== Second part ====================-->
+            <div class="footer__content">
+                <h3 class="footer__title">Nuestra empresa</h3>
+                <ul class="footer__links">
+                    <li><a href="#" class="footer__link">Blog</a></li>
+                    <li><a href="#" class="footer__link">Nuestra misión</a></li>
+                    <li><a href="#" class="footer__link">Suscripción</a></li>
+                </ul>
+            </div>
+
+            <!--==================== Third part ====================-->
+            <div class="footer__content">
+                <h3 class="footer__title">Comunidad</h3>
+                <ul class="footer__links">
+                    <li><a href="#" class="footer__link">Soporte</a></li>
+                    <li><a href="#" class="footer__link">Preguntas</a></li>
+                    <li><a href="#" class="footer__link">Atención al cliente</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__social">
+                <a href="#" target="_blank" class="footer__social-link">
+                    <svg class="footer__social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M12.001 2.002c-5.522 0-9.999 4.477-9.999 9.999 0 4.99 3.656 9.126 8.437 9.879v-6.988h-2.54v-2.891h2.54V9.798c0-2.508 1.493-3.891 3.776-3.891 1.094 0 2.24.195 2.24.195v2.459h-1.264c-1.24 0-1.628.772-1.628 1.563v1.875h2.771l-.443 2.891h-2.328v6.988C18.344 21.129 22 16.992 22 12.001c0-5.522-4.477-9.999-9.999-9.999z">
+                        </path>
+                    </svg>
+                </a>
+                <a href="#" target="_blank" class="footer__social-link">
+                    <svg class="footer__social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M19.633 7.997c.013.175.013.349.013.523 0 5.325-4.053 11.461-11.46 11.461-2.282 0-4.402-.661-6.186-1.809.324.037.636.05.973.05a8.07 8.07 0 0 0 5.001-1.721 4.036 4.036 0 0 1-3.767-2.793c.249.037.499.062.761.062.361 0 .724-.05 1.061-.137a4.027 4.027 0 0 1-3.23-3.953v-.05c.537.299 1.16.486 1.82.511a4.022 4.022 0 0 1-1.796-3.354c0-.748.199-1.434.548-2.032a11.457 11.457 0 0 0 8.306 4.215c-.062-.3-.1-.611-.1-.923a4.026 4.026 0 0 1 4.028-4.028c1.16 0 2.207.486 2.943 1.272a7.957 7.957 0 0 0 2.556-.973 4.02 4.02 0 0 1-1.771 2.22 8.073 8.073 0 0 0 2.319-.624 8.645 8.645 0 0 1-2.019 2.083z">
+                        </path>
+                    </svg>
+                </a>
+                <a href="#" target="_blank" class="footer__social-link">
+                    <svg class="footer__social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M20.947 8.305a6.53 6.53 0 0 0-.419-2.216 4.61 4.61 0 0 0-2.633-2.633 6.606 6.606 0 0 0-2.186-.42c-.962-.043-1.267-.055-3.709-.055s-2.755 0-3.71.055a6.606 6.606 0 0 0-2.185.42 4.607 4.607 0 0 0-2.633 2.633 6.554 6.554 0 0 0-.419 2.185c-.043.963-.056 1.268-.056 3.71s0 2.754.056 3.71c.015.748.156 1.486.419 2.187a4.61 4.61 0 0 0 2.634 2.632 6.584 6.584 0 0 0 2.185.45c.963.043 1.268.056 3.71.056s2.755 0 3.71-.056a6.59 6.59 0 0 0 2.186-.419 4.615 4.615 0 0 0 2.633-2.633c.263-.7.404-1.438.419-2.187.043-.962.056-1.267.056-3.71-.002-2.442-.002-2.752-.058-3.709zm-8.953 8.297c-2.554 0-4.623-2.069-4.623-4.623s2.069-4.623 4.623-4.623a4.623 4.623 0 0 1 0 9.246zm4.807-8.339a1.077 1.077 0 0 1-1.078-1.078 1.077 1.077 0 1 1 2.155 0c0 .596-.482 1.078-1.077 1.078z">
+                        </path>
+                        <circle cx="11.994" cy="11.979" r="3.003"></circle>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <p class="footer__copy">&#169; Grupo #1<br>Todos los derechos reservados.</p>
+    </footer>
+    <script src="" async defer></script>
+</body>
+
+</html>

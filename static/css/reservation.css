@@ -1,0 +1,114 @@
+/* Importaciones */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap");
+
+:root {
+  --font-base-color: hsl(228, 28%, 9%);
+  --font-secondary-base-color: hsl(0, 0%, 40%);
+  --font-light-color: hsl(223, 82%, 96%);
+  --font-size-title: 4rem;
+  --font-size-paragraph: 1.2rem;
+  --primary-color: hsl(223, 89%, 79%);
+  --secondary-color-first: hsl(223, 88%, 87%);
+  --secondary-color-alpha: hsla(223, 88%, 87%, 0.473);
+  --secondary-color-one: hsl(223, 90%, 92%);
+  --secondary-color-two: hsl(223, 81%, 85%, 53%);
+  --secondary-color-three: hsl(223, 5%, 97%);
+  --secondary-color-four: hsl(0, 0, 100%);
+  --font-family: "Poppins", sans-serif;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+  box-sizing: border-box;
+  border: none;
+}
+
+body {
+  background: var(--secondary-color-three);
+}
+
+header{
+  display: contents;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  position: relative;
+  text-align: center;
+  padding: 0 10px 20px 10px;
+}
+h3 {
+  font-size: 1rem;
+  text-align: left;
+}
+
+input,
+select {
+  text-align: left;
+  width: 100%;
+  background-color: var(--secondary-color-three);
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-sizing: initial;
+
+  color: var(--font-secondary-base-color);
+}
+
+textarea {
+  border-radius: 5px;
+  width: 100%;
+  max-width: 100%;
+  min-height: 25px;
+  text-align: center;
+  padding: 5px 5px 5px 5px;
+  margin: 0 auto;
+  color: var(--font-secondary-base-color);
+}
+
+button{
+  width: 175px;
+  margin: 0 auto;
+  border-radius: 5px;
+  background-color: var(--secondary-color-three);
+}
+
+label{
+  font-size: .7rem;
+  margin: 0 auto;
+}
+
+.container-forms {
+  width: 100%;
+  position: relative;
+  top: 0;
+  display: contents;
+}
+
+.form-reservation{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  margin: 0 auto;
+  background-color: var(--primary-color);
+}
+
+.title {
+  color: var(--font-base-color);
+  border-radius: 10px;
+  font-size: 2rem;
+  width: 100%;
+  text-align: left;
+  position: relative;
+}
+.title-container{
+  border-radius: 10px 10px 0 0;
+  width: 50%;
+  margin: 0 auto;
+  height: 10%;
+  background-color: var(--primary-color);
+  padding: 20px 10px 0 10px;
+}
