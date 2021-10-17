@@ -99,6 +99,7 @@
         </nav>
     </header>
     <!-- ================ Contenido Principal de la pagina ================ -->
+    {% block main %}
     <main class="main">
         <!--=========== SECTION DE PAGINA DE INICIO - HOME ===========-->
         <section class="home section" id="home">
@@ -138,7 +139,7 @@
                         hotel es una hermosa combinación de grandeza tradicional e instalaciones modernas. Las
                         exclusivas habitaciones están amuebladas con una variedad de comodidades modernas, como
                         televisión y acceso a Internet.</p>
-                    <a href="#" class="button">Reserva Ahora</a>
+                    <a href="reservation.html" class="button">Reserva Ahora</a>
                 </div>
             </div>
             <a class="home__see-more" href="#oferta">
@@ -172,7 +173,7 @@
                                 Ventanas insonorizadas
                                 Ventanas del piso al techo
                             </p>
-                            <a href="" class="button button--flex button--small oferta__button">
+                            <a href="reservation.html" class="button button--flex button--small oferta__button">
                                 Reservar
                                 <svg class="arrow__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)">
@@ -197,7 +198,7 @@
                                 Ventanas insonorizadas
                                 Ventanas del piso al techo
                             </p>
-                            <a href="" class="button button--flex button--small oferta__button">
+                            <a href="reservation.html" class="button button--flex button--small oferta__button">
                                 Reservar
                                 <svg class="arrow__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)">
@@ -222,7 +223,7 @@
                                 Ventanas insonorizadas
                                 Ventanas del piso al techo
                             </p>
-                            <a href="" class="button button--flex button--small oferta__button">
+                            <a href="reservation.html" class="button button--flex button--small oferta__button">
                                 Reservar
                                 <svg class="arrow__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)">
@@ -247,7 +248,7 @@
                                 Ventanas insonorizadas
                                 Ventanas del piso al techo
                             </p>
-                            <a href="" class="button button--flex button--small oferta__button">
+                            <a href="reservation.html" class="button button--flex button--small oferta__button">
                                 Reservar
                                 <svg class="arrow__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)">
@@ -272,7 +273,7 @@
                                 Ventanas insonorizadas
                                 Ventanas del piso al techo
                             </p>
-                            <a href="#" class="button button--flex button--small oferta__button">
+                            <a href="reservation.html" class="button button--flex button--small oferta__button">
                                 Reservar
                                 <svg class="arrow__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)">
@@ -450,6 +451,7 @@
             </div>
         </section>
     </main>
+    {% endblock %}
 
     <footer class="footer section">
         <div class="footer__container container grid">
