@@ -2,10 +2,10 @@
 
 {% block title %} Success {% endblock %}
 
-{% block header %} {% endblock %}
+{% block header %}{% endblock %}
 
 
-{% block mainSection %}
+{% block main %}
 
 <div class="error__section">
     <div class="error__container" style="background-color: inherit;">
@@ -14,7 +14,7 @@
 
             <div class="error__title">PÁGINA NO ENCONTRADA</div>
 
-            <img class="error__img-png" src="{{url_for('static',filename='img/404.png')}}" alt="">
+            <img class="error__img-png" src="{{url_for('static',filename='images/404.png')}}" alt="">
             <p>Lo que estás buscando no está aquí</p>
             <!-- <p>What you were looking for is just not there.</p> -->
             <p>Redireccionando en: <span id="time"></span></p>

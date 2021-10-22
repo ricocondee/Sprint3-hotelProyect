@@ -1,4 +1,4 @@
-from flask import Flask, render_template, flash, request, redirect
+from flask import Flask, flash, request, redirect
 import utils
 import os
 
@@ -13,9 +13,9 @@ app.secret_key = os.urandom(24)
 def home():
     return render_template('index.html')
 
-
-
-@app.errorhandler(404) #== Error 404 (para url invalida)
+#== Error 404 (Muestra mensage de error si el usuario escribe 
+# una url invalida o no autorizada)
+@app.errorhandler(404) 
 def internal_error(x):
     return render_template("redirect/404.html"), 404
 
@@ -79,3 +79,9 @@ def login():
 @app.route('/reservation', methods=['GET', 'POST'])
 def reservation():
     return render_template('reservation.html')
+
+
+
+if __name__ == "__main__":
+    app.run()
+ 
