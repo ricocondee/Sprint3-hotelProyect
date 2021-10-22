@@ -44,6 +44,7 @@ form {
 h3 {
   font-size: 1rem;
   text-align: left;
+  color: var(--secondary-color-three);
 }
 
 input,
@@ -53,9 +54,8 @@ select {
   background-color: var(--secondary-color-three);
   border-radius: 5px;
   margin-bottom: 10px;
-  box-sizing: initial;
-
   color: var(--font-secondary-base-color);
+  padding: 5px 0 0 5px;
 }
 
 textarea {
@@ -97,7 +97,7 @@ label{
 }
 
 .title {
-  color: var(--font-base-color);
+  color: var(--secondary-color-three);
   border-radius: 10px;
   font-size: 2rem;
   width: 100%;
@@ -111,4 +111,14 @@ label{
   height: 10%;
   background-color: var(--primary-color);
   padding: 20px 10px 0 10px;
+}
+
+@media screen and (max-width: 680px) {
+
+  .form-reservation{
+    width: 100%;
+  }
+  .title-container{
+    width: 90%;
+  }
 }

@@ -67,6 +67,13 @@ h1{
     
 }
 
+button{
+	cursor: pointer;
+}
+button a{
+	color: var(--secondary-color-three);
+}
+
 
 .all{
     border-radius: 10px;
@@ -105,7 +112,7 @@ h1{
 }
 
 
-.form-login{
+.form-register{
     background-color: var(--secondary-color-three);
 	height: 100%;
 	float: left;
@@ -119,20 +126,11 @@ h1{
 }
 
 .swipe-one{
-    background-color: var(--secondary-color-three);
-	height: 100%;
-	float: left;
-    width: 50%;
-	position: relative;
 	display: none;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
 }
 
 
-.form-register{
+.form-login{
     background-color: var(--secondary-color-three);
 	height: 100%;
     width: 50%;
@@ -144,14 +142,7 @@ h1{
 }
 
 .swipe-two{
-    background-color: var(--secondary-color-three);
-	height: 100%;
-    width: 50%;
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
 }
 
 .effect-div{
@@ -194,4 +185,9 @@ button.none{
 	letter-spacing: 1px;
 	text-transform: uppercase;
 }
+
+.flash{
+	padding: 5px 0;
+}
+
 
