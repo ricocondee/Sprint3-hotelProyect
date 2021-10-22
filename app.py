@@ -2,6 +2,9 @@ from flask import Flask, render_template, flash, request, redirect
 import utils
 import os
 
+from werkzeug.utils import redirect
+from flask.templating import render_template
+
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
@@ -9,6 +12,12 @@ app.secret_key = os.urandom(24)
 @app.route('/')
 def home():
     return render_template('index.html')
+
+
+
+@app.errorhandler(404) #== Error 404 (para url invalida)
+def internal_error(x):
+    return render_template("redirect/404.html"), 404
 
 
 @app.route('/signup', methods=['GET', 'POST'])

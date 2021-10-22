@@ -1,0 +1,53 @@
+{% extends "index.html" %}
+
+{% block title %} Success {% endblock %}
+
+{% block header %} {% endblock %}
+
+
+{% block mainSection %}
+
+<div class="error__section">
+    <div class="error__container" style="background-color: inherit;">
+
+        <div class="error__content">
+
+            <div class="error__title">PÁGINA NO ENCONTRADA</div>
+
+            <img class="error__img-png" src="{{url_for('static',filename='img/404.png')}}" alt="">
+            <p>Lo que estás buscando no está aquí</p>
+            <!-- <p>What you were looking for is just not there.</p> -->
+            <p>Redireccionando en: <span id="time"></span></p>
+        
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script>
+var segundos = 5;
+function actualizar(){
+    document.querySelector('#time').innerHTML = "0"+segundos+"s";
+    if (segundos == -1) {
+         document.querySelector('#time').innerHTML = "Tiempo finalizado";
+     }else{
+         segundos-=1;
+         setTimeout(actualizar, 1E3);
+     }
+}
+actualizar();
+</script>
+
+
+<!--El Script debe estar dentro de las etiquetas de jinja2-->
+<script> 
+    setTimeout(function(){
+        window.location.href='{{"/"}}';
+        }, 5000);
+</script>
+{% endblock %}
