@@ -1,0 +1,6 @@
+*.log
+*.cfg
+__pycache__/
+Lib/
+Scripts/
+Include/
