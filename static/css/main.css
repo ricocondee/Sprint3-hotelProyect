@@ -80,6 +80,10 @@ img {
   height: auto;
 }
 
+p {
+  text-decoration: none;
+}
+
 /*======================= REUSABLE CLASSES =======================*/
 .section {
   padding: 4.5rem 0 1rem;
@@ -136,6 +140,8 @@ img {
 
 .main-title {
   z-index: 130;
+  text-decoration: none;
+  color: var(--title-color);
 }
 
 .header {
