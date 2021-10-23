@@ -1,2 +1,6 @@
+*.log
+*.cfg
 __pycache__/
-env/
+Lib/
+Scripts/
+Include/
