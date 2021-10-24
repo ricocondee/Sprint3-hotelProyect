@@ -23,6 +23,7 @@ def internal_error(x):
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     try:
+        
         error = None
         if request.method == 'POST':
             # register-form #
