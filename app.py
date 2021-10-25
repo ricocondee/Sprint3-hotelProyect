@@ -83,6 +83,15 @@ def reservation():
 
 
 
+# ============ PRUEBA DE LOGIN ==================
+# 1: 
+
+@app.route('/dashboard', methods=['GET','POST'])
+def dashboard():
+    return render_template('admin/dashboard.html')
+    
+
+
 if __name__ == "__main__":
     app.run()
  
