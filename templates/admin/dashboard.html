@@ -1,17 +1,24 @@
 {% extends "index.html" %}
 
-{# block header #}
-{# endblock #}
+{# block header #}{# endblock #}
+
+{% block login %}
+<li class="nav__item log">
+    <a href="{{ url_for('login')}}" class="nav__link">Logout</a>
+</li>
+{% endblock %}
+
+{% block btn_login %}
+<a href="{{ url_for('login')}}" class="button button__header">Logout</a>
+{% endblock %}
 
 {% block main %}
 <section class="home section" id="home">
     <div class="container grid">
-        hola
+        {{n}}
     </div>
 </section>
 {% endblock  %}
-
-
 
 {% block footer %}{% endblock %}
 {# block scripts #} {# endblock #}

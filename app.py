@@ -1,12 +1,22 @@
-from flask import Flask, flash, request, redirect
+import re
+from flask import Flask, flash, request, redirect,session
+# from flask.globals import session
+from flask.helpers import url_for
 import utils
 import os
+#================= Para la base de datos ============================#
+import sqlite3
+#================= Para cifrar las contraseñas ============================#
+import hashlib
+#==================== Hold the sessinon for more longer ===================
+from datetime import timedelta
 
 from werkzeug.utils import redirect
 from flask.templating import render_template
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
+app.permanent_session_lifetime = timedelta(minutes=5)
 
 
 @app.route('/')
@@ -53,28 +63,64 @@ def signup():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    # Login-form #
     if request.method == 'POST':
-        emailLogIn = request.form['email-login']
-        passLogIn = request.form['pass-login']
+        email = request.form.get('email-login')
+        password = request.form.get('pass-login')
 
-        # saved data #
-        password = 'testApp1!'
-        email = 'testemail@test.com'
+        # Comprobar si el correo es de admin primero @hotelmarriot.com
+        if utils.isPrivateEmailValid(email) and utils.isMyPasswordValid(password):
+            
+            encrypt = hashlib.sha256(password.encode('utf-8'))
+            encrypted = encrypt.hexdigest()
 
-        if not emailLogIn or not passLogIn:
-            error = "Llena todos los campos."
-            flash(error)
-            return render_template('login.html')
+            with sqlite3.connect('database/hotel.db') as con:
 
-        elif emailLogIn != email or passLogIn != password:
-            print(email, password)
-            error = "Credenciales incorrectas, intenta con estas. email: testemail@test.com contraseña: testApp1!"
-            flash(error)
-            return render_template('login.html')
+                con.row_factory = sqlite3.Row
+                cursor = con.cursor()
+                # cursor.execute("INSERT INTO admin (nombre_admin,apellido_admin,telefono_admin,email_admin, password) VALUES (?,?,?,?,?)",
+                cursor.execute("SELECT nombre_admin FROM admin WHERE email_admin=? AND password=?",
+                [email,encrypted])
+                # con.commit()
+                row = cursor.fetchone()[0] #
+                if row:
+                    session.permanent = True
+                    user = row
+                    session['row'] = user
+                    # session['name']  = name
+                    return redirect(url_for('dashboard',name = row))
+                elif row in session:
+                    #se puede crear una pagina para decir admin inabilitado
+                    return redirect(url_for('dashboard',name = row))
+                else:
+                    return render_template('redirect/404.html')
         else:
-            return redirect('/reservation')
+            return 'Eres user'
+
     return render_template('login.html')
+
+
+    # Login-form #
+    # if request.method == 'POST':
+    #     emailLogIn = request.form['email-login']
+    #     passLogIn = request.form['pass-login']
+
+    #     # saved data #
+    #     password = 'testApp1!'
+    #     email = 'testemail@test.com'
+
+    #     if not emailLogIn or not passLogIn:
+    #         error = "Llena todos los campos."
+    #         flash(error)
+    #         return render_template('login.html')
+
+    #     elif emailLogIn != email or passLogIn != password:
+    #         print(email, password)
+    #         error = "Credenciales incorrectas, intenta con estas. email: testemail@test.com contraseña: testApp1!"
+    #         flash(error)
+    #         return render_template('login.html')
+    #     else:
+    #         return redirect('/reservation')
+    # return render_template('login.html')
 
 
 @app.route('/reservation', methods=['GET', 'POST'])
@@ -83,12 +129,15 @@ def reservation():
 
 
 
-# ============ PRUEBA DE LOGIN ==================
+# ============ PRUEBA PARA EL DASHBOARD ==================
 # 1: 
 
-@app.route('/dashboard', methods=['GET','POST'])
-def dashboard():
-    return render_template('admin/dashboard.html')
+@app.route('/<name>', methods=['GET','POST'])
+def dashboard(name):
+    if 'row' in session:
+        return render_template('admin/dashboard.html')
+    else:
+        return render_template('redirect/404.html')
     
 
 

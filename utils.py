@@ -65,7 +65,8 @@ def isPrivateEmailValid(private):
         return False
 
 # Esta funcion permite la validacion de numeros telefonicos que contengan
-# la caracteristica: 3 digitos, 3digitos, 4 digitos
+# la caracteristica: 3 digitos, 3digitos, 4 digitos que estén separados
+# por espacios, guión o punto
 def isMyPhoneNumber(phone):
     if re.match(phone_regex, phone):
         return True

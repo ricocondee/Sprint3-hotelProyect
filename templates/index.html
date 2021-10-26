@@ -67,7 +67,7 @@
                 <!--En este elemento se añade en el class: "show-menu"-->
                 <ul class="nav__list">
                     <li class="nav__item">
-                        <a href="{{'/#home'}}" class="nav__link">Home</a>
+                        <a href="{{'/'}}" class="nav__link">Home</a>
                     </li>
                     <li class="nav__item">
                         <a href="{{'/#oferta'}}" class="nav__link">Ofertas</a>
@@ -78,9 +78,11 @@
                     <li class="nav__item">
                         <a href="{{'/#contacto'}}" class="nav__link">Contacto</a>
                     </li>
+                    {% block login%}
                     <li class="nav__item log">
                         <a href="{{ url_for('login')}}" class="nav__link">Login</a>
                     </li>
+                    {% endblock %}
                 </ul>
             </div>
 
