@@ -16,11 +16,30 @@
 
 {% block main %}
 <section class="home section" id="home">
+    <div class="message">
+        {% with messages = get_flashed_messages() %}
+            {% if messages%}
+                {% for msg in messages %}
+                <div class="welcome" ><p>{{msg}} {{username}} </p></div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
     <div class="container grid">
-        {{n}}
+    
     </div>
 </section>
 {% endblock  %}
 
 {% block footer %}{% endblock %}
-{# block scripts #} {# endblock #}
+
+
+{% block scripts %} 
+<script> 
+    function showMessage(){
+        document.getElementsByClassName("welcome")[0].style.visibility = "hidden";
+    }
+    setTimeout('showMessage()',5000);
+</script>
+{% endblock %}
+

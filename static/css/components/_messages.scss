@@ -1,0 +1,19 @@
+.message{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2rem;
+}
+
+.welcome{
+    visibility: visible;
+    position: absolute;
+    height: 2.5rem;
+    width: 20rem;
+    background-color: var(--color-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: .3s;
+
+}

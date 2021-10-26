@@ -105,7 +105,11 @@
             </div>
 
             {% block btn_login %}
-            <a href="{{ url_for('login')}}" class="button button__header">Login</a>
+            {% if session['row'] %}
+                <a href="{{ url_for('logout')}}" class="button button__header">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login')}}" class="button button__header">Login</a>
+            {% endif %}
             {% endblock %}
 
             {% block btn_arrow %}{% endblock %}
@@ -536,9 +540,14 @@
     </footer>
     {% endblock %}
 
-    {% block scripts %}
+    
+    {% block main_scritps%}
     <script src="/static/js/swiper-bundle.min.js"></script>
     <script src="/static/js/main.js"></script>
+    
+    {% block scripts %}
+    {% endblock %}
+    
     {% endblock %}
 </body>
 

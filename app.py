@@ -1,5 +1,5 @@
 import re
-from flask import Flask, flash, request, redirect,session,abort
+from flask import Flask, flash, request, redirect,session
 # from flask.globals import session
 from flask.helpers import url_for
 import utils
@@ -16,7 +16,7 @@ from flask.templating import render_template
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
-app.permanent_session_lifetime = timedelta(minutes=5)
+app.permanent_session_lifetime = timedelta(minutes=10)
 
 
 @app.route('/')
@@ -90,8 +90,8 @@ def login():
                     session.permanent = True
                     user = row
                     session['row'] = user
-                    # session['name']  = name
-                    return redirect(url_for('dashboard',name = row))
+                    flash('Bienvenido, ', 'info')
+                    return redirect(url_for('dashboard',name = row ))
                 elif row in session:
                     #se puede crear una pagina para decir admin inabilitado
                     return redirect(url_for('dashboard',name = row))
