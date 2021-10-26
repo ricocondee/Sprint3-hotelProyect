@@ -78,6 +78,14 @@
                     <li class="nav__item">
                         <a href="{{'/#contacto'}}" class="nav__link">Contacto</a>
                     </li>
+                    
+                    
+                    {% if session['row'] %}
+                    <li class="nav__item">
+                        <a href="{{ url_for('dashboard',name=session['row'])}}" class="nav__link">Dashboard</a>
+                    </li>
+                    {% endif %}
+
                     {% block login%}
                     <li class="nav__item log">
                         <a href="{{ url_for('login')}}" class="nav__link">Login</a>

@@ -1,5 +1,5 @@
 import re
-from flask import Flask, flash, request, redirect,session
+from flask import Flask, flash, request, redirect,session,abort
 # from flask.globals import session
 from flask.helpers import url_for
 import utils
@@ -11,7 +11,7 @@ import hashlib
 #==================== Hold the sessinon for more longer ===================
 from datetime import timedelta
 
-from werkzeug.utils import redirect
+from werkzeug.utils import escape, redirect
 from flask.templating import render_template
 
 app = Flask(__name__)
@@ -28,6 +28,10 @@ def home():
 @app.errorhandler(404) 
 def internal_error(x):
     return render_template("redirect/404.html"), 404
+
+@app.errorhandler(500)
+def internal_server_error(e):
+    return render_template("redirect/404.html"), 500
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -67,7 +71,7 @@ def login():
         email = request.form.get('email-login')
         password = request.form.get('pass-login')
 
-        # Comprobar si el correo es de admin primero @hotelmarriot.com
+        # Comprobar si el correo es de admin que incluya @hotelmarriot.com
         if utils.isPrivateEmailValid(email) and utils.isMyPasswordValid(password):
             
             encrypt = hashlib.sha256(password.encode('utf-8'))
@@ -132,13 +136,22 @@ def reservation():
 # ============ PRUEBA PARA EL DASHBOARD ==================
 # 1: 
 
+# @app.route('/user/<username>')
+# def profile(username):
+#     return '{}\'s profile'.format(escape(username))
+
 @app.route('/<name>', methods=['GET','POST'])
 def dashboard(name):
     if 'row' in session:
-        return render_template('admin/dashboard.html')
+        return render_template('admin/dashboard.html',username = name)
     else:
         return render_template('redirect/404.html')
-    
+
+ # ============ DESLOGUEO DEL USUARIO ==================   
+@app.route("/logout")
+def logout():
+    session.pop('row', None)
+    return redirect(url_for('home'))
 
 
 if __name__ == "__main__":

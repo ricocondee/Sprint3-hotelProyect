@@ -1,15 +1,17 @@
 {% extends "index.html" %}
 
+<title>{% block title %} Dashboard {% endblock %}</title>
+
 {# block header #}{# endblock #}
 
 {% block login %}
 <li class="nav__item log">
-    <a href="{{ url_for('login')}}" class="nav__link">Logout</a>
+    <a href="{{ url_for('logout')}}" class="nav__link">Logout</a>
 </li>
 {% endblock %}
 
 {% block btn_login %}
-<a href="{{ url_for('login')}}" class="button button__header">Logout</a>
+<a href="{{ url_for('logout')}}" class="button button__header">Logout</a>
 {% endblock %}
 
 {% block main %}
