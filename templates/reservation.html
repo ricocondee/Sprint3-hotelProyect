@@ -1,8 +1,8 @@
 {% extends "index.html" %}
 
 {% block links %}
-    <link rel="stylesheet" href="/static/css/reservation.css">
-    <link rel="stylesheet" href="/static/css/main.css">
+<link rel="stylesheet" href="/static/css/reservation.css">
+<link rel="stylesheet" href="/static/css/main.css">
 {% endblock %}
 
 {# block btn_login %} {% endblock #}
@@ -10,25 +10,33 @@
 {% block btn_arrow %}{% endblock %}
 
 {% block main %}
-    <div class="container-forms">
-        <div class="title-container">
-            <h1 class="title">Reservar habitacion</h1>
-        </div>
-        <div class="form-reservation">
-            <form action="{{ url_for('reservation') }}" id="reservation" name="reservation"  method="POST" novalidate>
-                <h3>Nombre completo</h3><input required id="name" type="text" placeholder="Nombres">
-                <input required id="lastname" type="text" placeholder="Apellidos">
-                <h3>Correo electronico</h3>
-                <input required id="email" type="text" placeholder="Email">
-                <input required id="confirm-email" type="text" placeholder="Confirme Email">
-                <h3>Numero de telefono</h3>
-                <input required type="tel" id="phone-number" placeholder="(+123 0000000000)">
+<div class="container-forms">
+    <div class="title-container">
+        <h1 class="title">Reservar habitaci&oacute;n</h1>
+    </div>
+    <div class="form-reservation">
+        <form action="{{ url_for('reservation') }}" id="reservation" name="reservation" method="POST" novalidate autocomplete="on">
+            <div class="nombres">
+                <h3>Nombre completo</h3>
+                <input id="name" name="name" type="text" placeholder="Nombres *" value="{{nameStatement}}">
+                <input id="lastname" name="lastname" type="text" placeholder="Apellidos *" value="{{lastnameStatement}}">
+            </div>
+            <div class="contactos">
+                <h3>Informaci&oacute;n de contacto</h3>
+                <input id="email" name="email" type="text" placeholder="Email *" value="{{emailStatement}}">
+                <input id="confirm-email" name="confirm-email" type="text" placeholder="Confirmar email *" value="{{confirmeEmailStatement}}">
+                <input type="tel" id="phone-number" name="phone-number" placeholder="N&uacute;mero celular *" value="{{phoneStatement}}">
+            </div>
+            <div class="fechas">
                 <h3>Fecha de llegada</h3>
-                <input required type="date" id="check-in">
+                <input type="text" id="check-in" name="check-in" placeholder="Check-In *" onblur="(this.type='text')" onfocus="(this.type='date')" value="{{checkinStatement}}">
                 <h3>Fecha de salida</h3>
-                <input required type="date" id="check-out">
-                <h3>Idioma de preferencia</h3>
-                <select name="lang" id="list-languages">
+                <input type="text" id="check-out" name="check-out" placeholder="Check-Out *" onblur="(this.type='text')" onfocus="(this.type='date')" value="{{checkoutStatement}}">
+            </div>
+            <div class="list">
+                <h3>Idioma y pa&iacute;s</h3>
+                <select name="list-languages" id="list-languages" value="{{languageStatement}}">
+                    <option selected>Idioma *</option>
                     <option id="Afrikanns">Afrikanns</option>
                     <option id="Albanian">Albanian</option>
                     <option id="Arabic">Arabic</option>
@@ -85,7 +93,7 @@
                     <option id="Serbian">Serbian</option>
                     <option id="Slovak">Slovak</option>
                     <option id="Slovenian">Slovenian</option>
-                    <option id="Spanish" selected>Spanish</option>
+                    <option id="Spanish">Spanish</option>
                     <option id="Swahili">Swahili</option>
                     <option id="Swedish ">Swedish </option>
                     <option id="Tamil">Tamil</option>
@@ -102,30 +110,30 @@
                     <option id="Welsh">Welsh</option>
                     <option id="Xhosa">Xhosa</option>
                 </select>
-                <h3>Pais de origen</h3>
-                <select required name="country" id="list-countries">
-                    <option id="AF">Afganistán</option>
+                <select  name="list-countries" id="list-countries" value="{{countryStatement}}">
+                    <option selected>Pa&iacute;s *</option>
+                    <option id="AF">Afganist&aacute;n</option>
                     <option id="AL">Albania</option>
                     <option id="DE">Alemania</option>
                     <option id="AD">Andorra</option>
                     <option id="AO">Angola</option>
                     <option id="AI">Anguilla</option>
-                    <option id="AQ">Antártida</option>
+                    <option id="AQ">Ant&aacute;rtida</option>
                     <option id="AG">Antigua y Barbuda</option>
                     <option id="AN">Antillas Holandesas</option>
-                    <option id="SA">Arabia Saudí</option>
+                    <option id="SA">Arabia Saud&iacute;</option>
                     <option id="DZ">Argelia</option>
                     <option id="AR">Argentina</option>
                     <option id="AM">Armenia</option>
                     <option id="AW">Aruba</option>
                     <option id="AU">Australia</option>
                     <option id="AT">Austria</option>
-                    <option id="AZ">Azerbaiyán</option>
+                    <option id="AZ">Azerbaiy&aacute;n</option>
                     <option id="BS">Bahamas</option>
                     <option id="BH">Bahrein</option>
                     <option id="BD">Bangladesh</option>
                     <option id="BB">Barbados</option>
-                    <option id="BE">Bélgica</option>
+                    <option id="BE">B&eacute;lgica</option>
                     <option id="BZ">Belice</option>
                     <option id="BJ">Benin</option>
                     <option id="BM">Bermudas</option>
@@ -139,23 +147,23 @@
                     <option id="BG">Bulgaria</option>
                     <option id="BF">Burkina Faso</option>
                     <option id="BI">Burundi</option>
-                    <option id="BT">Bután</option>
+                    <option id="BT">But&aacute;n</option>
                     <option id="CV">Cabo Verde</option>
                     <option id="KH">Camboya</option>
-                    <option id="CM">Camerún</option>
-                    <option id="CA">Canadá</option>
+                    <option id="CM">Camer&uacute;n</option>
+                    <option id="CA">Canad&aacute;</option>
                     <option id="TD">Chad</option>
                     <option id="CL">Chile</option>
                     <option id="CN">China</option>
                     <option id="CY">Chipre</option>
-                    <option id="VA">Ciudad del Vaticano (Santa Sede)</option>
-                    <option id="CO" selected>Colombia</option>
+                    <option id="VA">Ciudad del Vaticano</option>
+                    <option id="CO">Colombia</option>
                     <option id="KM">Comores</option>
                     <option id="CG">Congo</option>
-                    <option id="CD">Congo, República Democrática del</option>
+                    <option id="CD">Congo, Rep&uacute;blica Democr&aacute;tica del</option>
                     <option id="KR">Corea</option>
                     <option id="KP">Corea del Norte</option>
-                    <option id="CI">Costa de Marfíl</option>
+                    <option id="CI">Costa de Marf&iacute;l</option>
                     <option id="CR">Costa Rica</option>
                     <option id="HR">Croacia (Hrvatska)</option>
                     <option id="CU">Cuba</option>
@@ -165,18 +173,18 @@
                     <option id="EC">Ecuador</option>
                     <option id="EG">Egipto</option>
                     <option id="SV">El Salvador</option>
-                    <option id="AE">Emiratos Árabes Unidos</option>
+                    <option id="AE">Emiratos &aacute;rabes Unidos</option>
                     <option id="ER">Eritrea</option>
                     <option id="SI">Eslovenia</option>
-                    <option id="ES">España</option>
+                    <option id="ES">Espa&ntilde;a</option>
                     <option id="US">Estados Unidos</option>
                     <option id="EE">Estonia</option>
-                    <option id="ET">Etiopía</option>
+                    <option id="ET">Etiop&iacute;a</option>
                     <option id="FJ">Fiji</option>
                     <option id="PH">Filipinas</option>
                     <option id="FI">Finlandia</option>
                     <option id="FR">Francia</option>
-                    <option id="GA">Gabón</option>
+                    <option id="GA">Gab&oacute;n</option>
                     <option id="GM">Gambia</option>
                     <option id="GE">Georgia</option>
                     <option id="GH">Ghana</option>
@@ -192,18 +200,18 @@
                     <option id="GN">Guinea</option>
                     <option id="GQ">Guinea Ecuatorial</option>
                     <option id="GW">Guinea-Bissau</option>
-                    <option id="HT">Haití</option>
+                    <option id="HT">Hait&iacute;</option>
                     <option id="HN">Honduras</option>
-                    <option id="HU">Hungría</option>
+                    <option id="HU">Hungr&iacute;a</option>
                     <option id="IN">India</option>
                     <option id="ID">Indonesia</option>
                     <option id="IQ">Irak</option>
-                    <option id="IR">Irán</option>
+                    <option id="IR">Ir&aacute;n</option>
                     <option id="IE">Irlanda</option>
                     <option id="BV">Isla Bouvet</option>
                     <option id="CX">Isla de Christmas</option>
                     <option id="IS">Islandia</option>
-                    <option id="KY">Islas Caimán</option>
+                    <option id="KY">Islas Caim&aacute;n</option>
                     <option id="CK">Islas Cook</option>
                     <option id="CC">Islas de Cocos o Keeling</option>
                     <option id="FO">Islas Faroe</option>
@@ -213,48 +221,48 @@
                     <option id="MH">Islas Marshall</option>
                     <option id="UM">Islas menores de Estados Unidos</option>
                     <option id="PW">Islas Palau</option>
-                    <option id="SB">Islas Salomón</option>
+                    <option id="SB">Islas Salom&oacute;n</option>
                     <option id="SJ">Islas Svalbard y Jan Mayen</option>
                     <option id="TK">Islas Tokelau</option>
                     <option id="TC">Islas Turks y Caicos</option>
-                    <option id="VI">Islas Vírgenes (EEUU)</option>
-                    <option id="VG">Islas Vírgenes (Reino Unido)</option>
+                    <option id="VI">Islas V&iacute;rgenes (EEUU)</option>
+                    <option id="VG">Islas V&iacute;rgenes (Reino Unido)</option>
                     <option id="WF">Islas Wallis y Futuna</option>
                     <option id="IL">Israel</option>
                     <option id="IT">Italia</option>
                     <option id="JM">Jamaica</option>
-                    <option id="JP">Japón</option>
+                    <option id="JP">Jap&oacute;n</option>
                     <option id="JO">Jordania</option>
-                    <option id="KZ">Kazajistán</option>
+                    <option id="KZ">Kazajist&aacute;n</option>
                     <option id="KE">Kenia</option>
-                    <option id="KG">Kirguizistán</option>
+                    <option id="KG">Kirguizist&aacute;n</option>
                     <option id="KI">Kiribati</option>
                     <option id="KW">Kuwait</option>
                     <option id="LA">Laos</option>
                     <option id="LS">Lesotho</option>
                     <option id="LV">Letonia</option>
-                    <option id="LB">Líbano</option>
+                    <option id="LB">L&iacute;bano</option>
                     <option id="LR">Liberia</option>
                     <option id="LY">Libia</option>
                     <option id="LI">Liechtenstein</option>
                     <option id="LT">Lituania</option>
                     <option id="LU">Luxemburgo</option>
-                    <option id="MK">Macedonia, Ex-República Yugoslava de</option>
+                    <option id="MK">Macedonia, Ex-Rep&uacute;blica Yugoslava</option>
                     <option id="MG">Madagascar</option>
                     <option id="MY">Malasia</option>
                     <option id="MW">Malawi</option>
                     <option id="MV">Maldivas</option>
-                    <option id="ML">Malí</option>
+                    <option id="ML">Mal&iacute;</option>
                     <option id="MT">Malta</option>
                     <option id="MA">Marruecos</option>
                     <option id="MQ">Martinica</option>
                     <option id="MU">Mauricio</option>
                     <option id="MR">Mauritania</option>
                     <option id="YT">Mayotte</option>
-                    <option id="MX">México</option>
+                    <option id="MX">M&eacute;xico</option>
                     <option id="FM">Micronesia</option>
                     <option id="MD">Moldavia</option>
-                    <option id="MC">Mónaco</option>
+                    <option id="MC">M&oacute;naco</option>
                     <option id="MN">Mongolia</option>
                     <option id="MS">Montserrat</option>
                     <option id="MZ">Mozambique</option>
@@ -262,20 +270,20 @@
                     <option id="NR">Nauru</option>
                     <option id="NP">Nepal</option>
                     <option id="NI">Nicaragua</option>
-                    <option id="NE">Níger</option>
+                    <option id="NE">N&iacute;ger</option>
                     <option id="NG">Nigeria</option>
                     <option id="NU">Niue</option>
                     <option id="NF">Norfolk</option>
                     <option id="NO">Noruega</option>
                     <option id="NC">Nueva Caledonia</option>
                     <option id="NZ">Nueva Zelanda</option>
-                    <option id="OM">Omán</option>
-                    <option id="NL">Países Bajos</option>
-                    <option id="PA">Panamá</option>
-                    <option id="PG">Papúa Nueva Guinea</option>
-                    <option id="PK">Paquistán</option>
+                    <option id="OM">Om&aacute;n</option>
+                    <option id="NL">Pa&iacute;ses Bajos</option>
+                    <option id="PA">Panam&aacute;</option>
+                    <option id="PG">Pap&uacute;a Nueva Guinea</option>
+                    <option id="PK">Paquist&aacute;n</option>
                     <option id="PY">Paraguay</option>
-                    <option id="PE">Perú</option>
+                    <option id="PE">Per&uacute;</option>
                     <option id="PN">Pitcairn</option>
                     <option id="PF">Polinesia Francesa</option>
                     <option id="PL">Polonia</option>
@@ -283,12 +291,12 @@
                     <option id="PR">Puerto Rico</option>
                     <option id="QA">Qatar</option>
                     <option id="UK">Reino Unido</option>
-                    <option id="CF">República Centroafricana</option>
-                    <option id="CZ">República Checa</option>
-                    <option id="ZA">República de Sudáfrica</option>
-                    <option id="DO">República Dominicana</option>
-                    <option id="SK">República Eslovaca</option>
-                    <option id="RE">Reunión</option>
+                    <option id="CF">Rep&uacute;blica Centroafricana</option>
+                    <option id="CZ">Rep&uacute;blica Checa</option>
+                    <option id="ZA">Rep&uacute;blica de Sud&aacute;frica</option>
+                    <option id="DO">Rep&uacute;blica Dominicana</option>
+                    <option id="SK">Rep&uacute;blica Eslovaca</option>
+                    <option id="RE">Reuni&oacute;n</option>
                     <option id="RW">Ruanda</option>
                     <option id="RO">Rumania</option>
                     <option id="RU">Rusia</option>
@@ -299,8 +307,8 @@
                     <option id="SM">San Marino</option>
                     <option id="VC">San Vicente y Granadinas</option>
                     <option id="SH">Santa Helena</option>
-                    <option id="LC">Santa Lucía</option>
-                    <option id="ST">Santo Tomé y Príncipe</option>
+                    <option id="LC">Santa Luc&iacute;a</option>
+                    <option id="ST">Santo Tom&eacute; y Pr&iacute;ncipe</option>
                     <option id="SN">Senegal</option>
                     <option id="SC">Seychelles</option>
                     <option id="SL">Sierra Leona</option>
@@ -310,27 +318,27 @@
                     <option id="LK">Sri Lanka</option>
                     <option id="PM">St Pierre y Miquelon</option>
                     <option id="SZ">Suazilandia</option>
-                    <option id="SD">Sudán</option>
+                    <option id="SD">Sud&aacute;n</option>
                     <option id="SE">Suecia</option>
                     <option id="CH">Suiza</option>
                     <option id="SR">Surinam</option>
                     <option id="TH">Tailandia</option>
-                    <option id="TW">Taiwán</option>
+                    <option id="TW">Taiw&aacute;n</option>
                     <option id="TZ">Tanzania</option>
-                    <option id="TJ">Tayikistán</option>
+                    <option id="TJ">Tayikist&aacute;n</option>
                     <option id="TF">Territorios franceses del Sur</option>
                     <option id="TP">Timor Oriental</option>
                     <option id="TG">Togo</option>
                     <option id="TO">Tonga</option>
                     <option id="TT">Trinidad y Tobago</option>
-                    <option id="TN">Túnez</option>
-                    <option id="TM">Turkmenistán</option>
-                    <option id="TR">Turquía</option>
+                    <option id="TN">T&uacute;nez</option>
+                    <option id="TM">Turkmenist&aacute;n</option>
+                    <option id="TR">Turqu&iacute;a</option>
                     <option id="TV">Tuvalu</option>
                     <option id="UA">Ucrania</option>
                     <option id="UG">Uganda</option>
                     <option id="UY">Uruguay</option>
-                    <option id="UZ">Uzbekistán</option>
+                    <option id="UZ">Uzbekist&aacute;n</option>
                     <option id="VU">Vanuatu</option>
                     <option id="VE">Venezuela</option>
                     <option id="VN">Vietnam</option>
@@ -339,24 +347,36 @@
                     <option id="ZM">Zambia</option>
                     <option id="ZW">Zimbabue</option>
                 </select>
-                <h3>Numero de huespedes</h3>
-                <input required type="number" id="number-of-adults" placeholder="Adultos">
-                <input required type="number" id="number-of-kids" placeholder="Niños (Menor de 18)">
+            </div>
+            <div class="huespedes">
+                <h3>N&uacute;mero de huespedes</h3>
+                <input type="number" id="number-of-adults" name="number-of-adults" placeholder="Adultos *" value="{{adultsQuantityStatement}}">
+                <input type="number" id="number-of-kids" name="number-of-kids" placeholder="Ni&ntilde;os (Menor de 18) *" value="{{kidsQuantityStatement}}">
+            </div>
+            <div class="especial">
                 <h3>Peticiones especiales</h3>
-                <textarea id="petitions" placeholder="Maximo 500 caracteres" maxlength="500"></textarea>
-                <div>
-                    <label for="policies">Declaro haber
-                        leído y aceptar las
-                        <a href="/static/images/JW-Marriott-Policies.pdf" target="_blank">Politicas de Privacidad</a> del Hotel y la normativa sobre
-                        protección de datos.</label>
-                    <input required type="checkbox" name="policies" id="policies">
-                </div>
-                <button>Continuar al pago</button>
-            </form>
-        </div>
+                <textarea id="petitions" name="petitions" placeholder="(Opcional) Maximo 300 caracteres" maxlength="300" spellcheck="true" value="{{petitionStatement}}"></textarea>
+            </div>
+
+            <div class="policies">
+                <label for="policies">Declaro haber
+                    le&iacute;do y aceptar las
+                    <a href="/static/images/JW-Marriott-Policies.pdf" target="_blank">Politicas de Privacidad</a> del
+                    Hotel y la normativa sobre
+                    protecci&oacute;n de datos.</label>
+                <input type="checkbox" name="policies" id="policies">
+            </div>
+            <input type="submit" name="pay" id="pay" class="pay" value="Reservar y pagar">
+            <section>
+                {% for message in get_flashed_messages() %}
+                <div class="flash">{{ message }}</div>
+                {% endfor %}
+            </section>
+        </form>
     </div>
+</div>
 {% endblock %}
 
 {% block footer %}
-    <p class="footer__copy">&#169; Grupo #1<br>Todos los derechos reservados.</p>
+<p class="footer__copy">&#169; Grupo #1<br>Todos los derechos reservados.</p>
 {% endblock %}
