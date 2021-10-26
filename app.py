@@ -1,20 +1,31 @@
-from flask import Flask, flash, request, redirect, render_template
+from flask import Flask, flash, request, render_template, session
+import sqlite3
 import utils
 import os
+from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import redirect
-
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
+
+@app.before_request
+def session_management():
+  session.permanent = True
+
+def sqlConnection():
+    conexion = sqlite3.connect('JWDATABASE.db')
+    return conexion
 
 
 @app.route('/')
 def home():
     return render_template('index.html')
 
-#== Error 404 (Muestra mensage de error si el usuario escribe 
+# == Error 404 (Muestra mensage de error si el usuario escribe
 # una url invalida o no autorizada)
-@app.errorhandler(404) 
+
+
+@app.errorhandler(404)
 def internal_error(x):
     return render_template("redirect/404.html"), 404
 
@@ -44,6 +55,15 @@ def signup():
                 flash(error)
                 return render_template('login.html')
 
+            hashWord = generate_password_hash(passSignUp)
+            conexion = sqlConnection()
+            cur = conexion.cursor()
+            sqlrt = 'INSERT INTO registerdata (nombre, email, password) VALUES(?,?,?)'
+            cur.execute(sqlrt, [name, emailSignUp, hashWord])
+            conexion.commit()
+            menssage = "Ya puedes logearte."
+            flash(menssage)
+
         return render_template('login.html')
     except:
         return render_template('login.html')
@@ -51,36 +71,91 @@ def signup():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    
     # Login-form #
     if request.method == 'POST':
         emailLogIn = request.form['email-login']
         passLogIn = request.form['pass-login']
 
-        # saved data #
-        password = 'testApp1!'
-        email = 'testemail@test.com'
+        conexion = sqlConnection()
+        cur = conexion.cursor()
+        sqlrt = 'SELECT * FROM registerdata WHERE email = ?'
+        cur.execute(sqlrt, [emailLogIn])
+        cur = cur.fetchone()
+
+        session["user"] = cur
 
         if not emailLogIn or not passLogIn:
             error = "Llena todos los campos."
             flash(error)
             return render_template('login.html')
-
-        elif emailLogIn != email or passLogIn != password:
-            print(email, password)
-            error = "Credenciales incorrectas, intenta con estas. email: testemail@test.com contraseña: testApp1!"
+        elif cur is None:
+            error = "Email incorrecto."
             flash(error)
-            return render_template('login.html')
-        else:
+
+        elif check_password_hash(cur[3], passLogIn):
             return redirect('/reservation')
+        else:
+            error = "Contraseña incorrecta"
+            flash(error)
     return render_template('login.html')
 
 
 @app.route('/reservation', methods=['GET', 'POST'])
 def reservation():
-    return render_template('reservation.html')
+    if request.method == 'POST':
+        name = request.form['name']
+        lastname = request.form['lastname']
+        email = request.form['email']
+        confirmeEmail = request.form['confirm-email']
+        phoneNumber = request.form['phone-number']
+        checkin = request.form['check-in']
+        checkout = request.form['check-out']
+        language = request.form['list-languages']
+        country = request.form['list-countries']
+        adultsQuantity = request.form['number-of-adults']
+        kidsQuantity = request.form['number-of-kids']
+        petition = request.form['petitions']
+        policies = request.form.get('policies')
 
+        def returned():
+            return render_template('reservation.html',
+                                   nameStatement=name,
+                                   lastnameStatement=lastname,
+                                   emailStatement=email,
+                                   confirmeEmailStatement=confirmeEmail,
+                                   phoneStatement=phoneNumber,
+                                   checkinStatement=checkin,
+                                   checkoutStatement=checkout,
+                                   languageStatement=language,
+                                   countryStatement=country,
+                                   adultsQuantityStatement=adultsQuantity,
+                                   kidsQuantityStatement=kidsQuantity,
+                                   petitionStatement=petition)
+
+        if not name or not lastname or not email or not confirmeEmail or not phoneNumber or not checkin or not checkout or not language or not country or not adultsQuantity or not kidsQuantity:
+            error = 'Los campos marcados con (*) son obligatorios.'
+            flash(error)
+            return returned()
+        else:
+            if not utils.isEmailValid(email):
+                error = "El email no es valido."
+                flash(error)
+                return returned()
+            elif email != confirmeEmail:
+                error = "El email no coincide."
+                flash(error)
+                return returned()
+            elif not kidsQuantity or not adultsQuantity:
+                error = "Almenos 1 adulto, si nadie es niño coloque 0."
+                flash(error)
+                return returned()
+            elif policies == None:
+                error = "Debe aceptar los terminos y condiciones."
+                flash(error)
+                return returned()
+    return render_template('reservation.html')
 
 
 if __name__ == "__main__":
     app.run()
- 
