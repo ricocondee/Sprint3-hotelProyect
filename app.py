@@ -90,7 +90,7 @@ def login():
                     session.permanent = True
                     user = row
                     session['row'] = user
-                    flash('Bienvenido, ', 'info')
+                    flash('Bienvenido, ','info')
                     return redirect(url_for('dashboard',name = row ))
                 elif row in session:
                     #se puede crear una pagina para decir admin inabilitado
