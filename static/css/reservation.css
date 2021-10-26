@@ -25,6 +25,7 @@
 }
 
 body {
+  overflow-x: hidden;
   background: var(--secondary-color-three);
 }
 
@@ -32,25 +33,16 @@ header{
   display: contents;
 }
 
-form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-  position: relative;
-  text-align: center;
-  padding: 0 10px 20px 10px;
-}
+
 h3 {
   font-size: 1rem;
-  text-align: left;
   color: var(--secondary-color-three);
 }
 
 input,
 select {
-  text-align: left;
-  width: 100%;
+  text-align: center;
+  width: 98%;
   background-color: var(--secondary-color-three);
   border-radius: 5px;
   margin-bottom: 10px;
@@ -60,23 +52,19 @@ select {
 
 textarea {
   border-radius: 5px;
-  width: 100%;
-  max-width: 100%;
-  min-height: 25px;
+  width: 98%;
+  height: auto;
+  min-height: 50px;
+  max-height: 115px;
+  resize:vertical;
   text-align: center;
   padding: 5px 5px 5px 5px;
   margin: 0 auto;
   color: var(--font-secondary-base-color);
 }
 
-button{
-  width: 175px;
-  margin: 0 auto;
-  border-radius: 5px;
-  background-color: var(--secondary-color-three);
-}
 
-label{
+label, .flash{
   font-size: .7rem;
   margin: 0 auto;
 }
@@ -89,11 +77,14 @@ label{
 }
 
 .form-reservation{
-  width: 50%;
-  height: 100%;
-  display: flex;
+  width: 80%;
+  padding: 0 20px;
+  display: grid;
   margin: 0 auto;
+  position: relative;
+  left: 8%;
   background-color: var(--primary-color);
+  border-radius: 0 0 10px 10px;
 }
 
 .title {
@@ -101,24 +92,100 @@ label{
   border-radius: 10px;
   font-size: 2rem;
   width: 100%;
-  text-align: left;
-  position: relative;
+  text-align: center;
 }
 .title-container{
+  position: relative;
   border-radius: 10px 10px 0 0;
-  width: 50%;
+  width: 80%;
   margin: 0 auto;
   height: 10%;
   background-color: var(--primary-color);
   padding: 20px 10px 0 10px;
+  left: 8%;
+}
+
+.nombres{
+  display: grid;
+  text-align: center;
+  float: left;
+  width: 50%;
+  margin: 0;
+}
+.contactos{
+  display: grid;
+  text-align: center;
+  float: right;
+  width: 50%;
+
+}
+
+.fechas{
+  display: grid;
+  text-align: center;
+  float: left;
+  width: 50%;
+}
+
+.list{
+  display: grid;
+  text-align: center;
+  float: right;
+  width: 50%;
+}
+
+
+
+.huespedes{
+  display: grid;
+  text-align: center;
+  float: left;
+  width: 50%;
+}
+
+.especial{
+  display: grid;
+  text-align: center;
+  float: left;
+  width: 50%;
+}
+
+#policies{
+  display: grid;
+}
+.policies{
+  display: grid;
+  text-align: center;
+  float: right;
+  width: 50%;
+}
+
+.pay{
+  border-radius: 20px;
+	border: 2px solid var(--secondary-color-three);
+	background-color: var(--primary-color);
+	color: var(--font-light-color);
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+.pay:hover{
+  background-color: var(--secondary-color-two);
+  cursor: pointer;
 }
 
 @media screen and (max-width: 680px) {
 
   .form-reservation{
-    width: 100%;
+    position: inherit;
+    left: 0;
+    width:  90%;
   }
   .title-container{
+    position: inherit;
+    left: 0;
     width: 90%;
   }
 }

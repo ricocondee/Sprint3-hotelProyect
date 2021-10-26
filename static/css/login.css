@@ -112,7 +112,7 @@ button a{
 }
 
 
-.form-register{
+.form-login{
     background-color: var(--secondary-color-three);
 	height: 100%;
 	float: left;
@@ -130,7 +130,7 @@ button a{
 }
 
 
-.form-login{
+.form-register{
     background-color: var(--secondary-color-three);
 	height: 100%;
     width: 50%;

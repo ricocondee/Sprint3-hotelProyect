@@ -1,7 +1,7 @@
 const effect = document.getElementById('swipe-effect')
-const btnRegister = document.getElementById('btn-sign') 
 const formLogin = document.getElementById('swipe-one')
 const formRegister = document.getElementById('swipe-two')
+const route = window.location.href.indexOf('/signup')
 
 effect.addEventListener('click', function() {
 
@@ -26,3 +26,8 @@ effect.addEventListener('click', function() {
         this.textContent = "Log In"
     }
 });
+
+if (route != -1){
+    formLogin.classList.add('swipe-one')
+    formRegister.classList.add('swipe-two')
+}
