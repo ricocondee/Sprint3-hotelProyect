@@ -1,16 +1,15 @@
 from flask import Flask, flash, request, render_template, session
 import sqlite3
+
+from flask.helpers import url_for
 import utils
 import os
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import redirect
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
+app.secret_key = os.urandom(64)
 
-@app.before_request
-def session_management():
-  session.permanent = True
 
 def sqlConnection():
     conexion = sqlite3.connect('JWDATABASE.db')
@@ -30,7 +29,7 @@ def internal_error(x):
     return render_template("redirect/404.html"), 404
 
 
-@app.route('/signup', methods=['GET', 'POST'])
+@app.route('/signup', methods=['POST'])
 def signup():
     try:
         error = None
@@ -71,7 +70,7 @@ def signup():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    
+
     # Login-form #
     if request.method == 'POST':
         emailLogIn = request.form['email-login']
@@ -83,8 +82,6 @@ def login():
         cur.execute(sqlrt, [emailLogIn])
         cur = cur.fetchone()
 
-        session["user"] = cur
-
         if not emailLogIn or not passLogIn:
             error = "Llena todos los campos."
             flash(error)
@@ -94,11 +91,20 @@ def login():
             flash(error)
 
         elif check_password_hash(cur[3], passLogIn):
-            return redirect('/reservation')
+            session.clear()
+            session['email'] = cur[2]
+            if 'email' in session:
+                return redirect(url_for('reservation'))
         else:
             error = "Contraseña incorrecta"
             flash(error)
     return render_template('login.html')
+
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('login'))
 
 
 @app.route('/reservation', methods=['GET', 'POST'])
@@ -147,15 +153,24 @@ def reservation():
                 flash(error)
                 return returned()
             elif not kidsQuantity or not adultsQuantity:
-                error = "Almenos 1 adulto, si nadie es niño coloque 0."
+                error = "Almenos 1 adulto, si no hay niños coloque 0."
                 flash(error)
                 return returned()
             elif policies == None:
                 error = "Debe aceptar los terminos y condiciones."
                 flash(error)
                 return returned()
+            elif not petition:
+                petition = "Sin peticiones especiales."
+
+        conexion = sqlConnection()
+        cur = conexion.cursor()
+        sqlrt = 'INSERT INTO reserva (nombres, apellidos, check_in, check_out, adultos, menores, email, telefono, idioma, pais, peticiones) VALUES (?,?,?,?,?,?,?,?,?,?,?);'
+        cur.execute(sqlrt, [name, lastname, checkin, checkout, adultsQuantity, kidsQuantity, email, phoneNumber, language, country, petition])
+        conexion.commit()
+        return render_template('redirect/success.html')
     return render_template('reservation.html')
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
