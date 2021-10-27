@@ -18,7 +18,6 @@ app = Flask(__name__)
 app.secret_key = os.urandom(24)
 app.permanent_session_lifetime = timedelta(minutes=10)
 
-
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -95,7 +94,7 @@ def signup():
     #     return render_template('login.html')
 
 
-# ============================ LOGIN ====================================
+# ============================ LOGIN ==================================
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
