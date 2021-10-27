@@ -1,0 +1,209 @@
+/*============================== SIDEBAR ==============================*/
+$nav-width: 4rem;
+
+.l-navbar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: $nav-width + 11rem;
+    height: 100vh;
+    background-color: var(--primary-color);
+    padding: 1.5rem .5rem 2rem;
+    transition: .5s;
+    z-index: 500;
+
+}
+
+.nav-container{
+    // background-color: tomato;
+    max-width: 968px;
+    margin-left: 11rem;
+    // margin-left: var(--mb-1-5);
+    margin-right: var(--mb-1-5);
+}
+
+@media screen and (min-width: 767px){
+
+    .nav-container{
+        max-width: 1120px;
+        margin-left: 19.5rem;
+    }
+}
+
+
+.side__nav{
+    // background-color: tomato;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    
+    &-main-logo{
+        // background-color: tomato;
+        display: flex;
+        align-items: center;
+        margin-bottom: var(--mb-2);
+        padding: 0 .5rem;
+        flex-direction: column;
+    }
+
+    &-logo{
+        fill: var(--text-color);
+        width: 7rem;
+        height: 7rem;
+        margin-bottom: var(--mb-0-5);
+    }
+
+    &-logo-text{
+        text-align: center;
+        font-weight: var(--font-semi-bold);
+    }
+
+    &__toggle{
+        position: absolute;
+        top: 4.5rem;
+        right: -0.8rem;
+        width: 1.7rem;
+        height: 1.7rem;
+        background-color: var(--text-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: .5s;
+    }
+
+    &-arrow{
+        fill: var(--color-white);
+        width: 1rem;
+        height: 1rem;
+    }
+
+    &__link{
+        display: flex;
+        align-items: center;
+        padding: .5rem;
+        border-radius: .5rem;
+        margin-bottom: var(--mb-1);
+        transition: .3s;
+        color: var(--title-color);
+        // gap: .5rem;
+
+        &:hover{
+            background-color: var(--color-white);
+        }
+    }
+
+    &__icon{
+        width: 1.7rem;
+        height: 1.7rem;
+        margin-right: 1rem;
+        fill: var(--text-color);
+    }
+    &__text{
+        font-weight: var(--font-semi-bold);
+        color: var(--text-color);
+    }
+}
+
+
+.show-dash{
+    width: $nav-width + 11.5rem;
+}
+
+
+//=============================== USER ===============================
+
+.u-navbar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: $nav-width + 11rem;
+    height: 100vh;
+    background-color: var(--text-color);
+    padding: 1.5rem .5rem 2rem;
+    transition: .5s;
+    z-index: 500;
+
+}
+.user__nav{
+    // background-color: tomato;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    
+    &-main-logo{
+        // background-color: tomato;
+        display: flex;
+        align-items: center;
+        margin-bottom: var(--mb-2);
+        padding: 0 .5rem;
+        flex-direction: column;
+    }
+
+    &-logo{
+        fill: var(--color-white);
+        width: 7rem;
+        height: 7rem;
+        margin-bottom: var(--mb-0-5);
+    }
+
+    &-logo-text{
+        text-align: center;
+        font-weight: var(--font-semi-bold);
+        color: var(--color-white);
+    }
+
+    &__toggle{
+        position: absolute;
+        top: 4.5rem;
+        right: -0.8rem;
+        width: 1.7rem;
+        height: 1.7rem;
+        background-color: var(--color-white);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: .5s;
+    }
+
+    &-arrow{
+        fill: var(--text-color);
+        width: 1rem;
+        height: 1rem;
+    }
+
+    &__link{
+        display: flex;
+        align-items: center;
+        padding: .5rem;
+        border-radius: .5rem;
+        margin-bottom: var(--mb-1);
+        transition: .3s;
+        color: var(--color-white);
+        // gap: .5rem;
+
+        &:hover{
+            border:  1px solid var(--color-white);
+            margin: 0;
+
+        }
+    }
+
+    &__icon{
+        width: 1.7rem;
+        height: 1.7rem;
+        margin-right: 1rem;
+        fill: var(--color-white);
+    }
+    &__text{
+        font-weight: var(--font-semi-bold);
+        color: var(--color-white);
+    }
+}
