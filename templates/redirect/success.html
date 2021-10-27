@@ -8,11 +8,12 @@
 {% block main %}
 
 <section class="success">
-    <div class="section__container" style="background-color: inherit;">
+    <div class="section__container">
         <div class="form success__form">
             <div class="success__texts">
                 <div class="success__title">REGISTO EXITOSO</div>
-                <p>Redireccionando a la pagina<br>de inicio en: <span id="time"></span></p>
+                <p>Ya puedes loguearte.</p>
+                <p>Redireccionando a la pagina<br>de Login en: <span id="time"></span></p>
             </div>
 
             <img class="success__img-png" src="{{url_for('static',filename='images/Success.png')}}" alt="">
@@ -43,7 +44,7 @@
 <!--El Script debe estar dentro de las etiquetas de jinja2-->
 <script> 
     setTimeout(function(){
-        window.location.href='{{"/"}}';
+        window.location.href='{{"/login"}}';
         }, 3000);
 </script>
 {% endblock %}

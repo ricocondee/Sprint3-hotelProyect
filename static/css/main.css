@@ -878,7 +878,7 @@ p {
           justify-content: center;
   padding: 1.5rem 1rem;
   border-radius: 1rem;
-  background-color: var(--color-transparent);
+  background-color: var(--body-color);
   -webkit-box-shadow: 0px 19px 13px -15px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 19px 13px -15px rgba(0, 0, 0, 0.2);
 }

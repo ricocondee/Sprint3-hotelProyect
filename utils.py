@@ -1,7 +1,7 @@
 import re
 from validate_email import validate_email
 
-name_regex = "^[a-zA-Z]+$"
+name_regex = "^[a-zA-Z- -]+$"
 
 pass_regex = "^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
 
