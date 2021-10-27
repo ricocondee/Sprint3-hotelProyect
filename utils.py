@@ -39,17 +39,23 @@ def isPasswordValid(password):
     else:
         return False
 
+def isNameValid(name):
+    if re.search(name_regex, name):
+        return True
+    else:
+        return False
+
 
 def isMyPasswordValid(password):
-    if re.search(r"^[a-z]{6,30}$", password): # Just letters in lowercase
+    if re.search(r"^[a-z]{8,30}$", password): # Just letters in lowercase
         return True
-    elif re.search(r"^[A-Z]{6,30}$", password): # Just in uppercase
+    elif re.search(r"^[A-Z]{8,30}$", password): # Just in uppercase
         return True
-    elif re.search(r"^[\d]{6,30}$", password): # Just numbers
+    elif re.search(r"^[\d]{8,30}$", password): # Just numbers
         return True
-    elif re.search(r"^[@$!%*#?&]{6,30}$", password): # Mix of characters
+    elif re.search(r"^[@$!%*#?&]{8,30}$", password): # Mix of characters
         return True
-    elif re.search(r"^[A-Za-z\d@$!#%*?&]{6,30}$", password): # All possibles combinations
+    elif re.search(r"^[A-Za-z\d@$!#%*?&]{8,30}$", password): # All possibles combinations
         return True
     else:
         return False
@@ -65,7 +71,8 @@ def isPrivateEmailValid(private):
         return False
 
 # Esta funcion permite la validacion de numeros telefonicos que contengan
-# la caracteristica: 3 digitos, 3digitos, 4 digitos
+# la caracteristica: 3 digitos, 3digitos, 4 digitos que estén separados
+# por espacios, guión o punto
 def isMyPhoneNumber(phone):
     if re.match(phone_regex, phone):
         return True
