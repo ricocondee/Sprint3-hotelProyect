@@ -25,11 +25,12 @@
     <!-- Header y barra de navegación -->
     {% block header %}
     <header class="header" id="header">
-
+        {% block figures_corner%}
         <div class="figures-top">
             <div class="figure-1"></div>
             <div class="figure-2"></div>
         </div>
+        {% endblock %}
 
         <nav class="{% block nav %} container {% endblock %} nav">
             <!-- <svg class="main-logo" version="1.0" xmlns="http://www.w3.org/2000/svg" width="24px" height="34px" viewBox="0 0 240.000000 459.000000" preserveAspectRatio="xMidYMid meet"><g transform="translate(0.000000,459.000000) scale(0.100000,-0.100000)" stroke="none">
