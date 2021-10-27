@@ -28,6 +28,12 @@ effect.addEventListener('click', function() {
 });
 
 if (route != -1){
+    if (effect.textContent == "Log In"){
+        effect.textContent = "Sign Up"
+    }
+    else{
+        effect.textContent = "Log In"
+    }
     formLogin.classList.add('swipe-one')
     formRegister.classList.add('swipe-two')
 }
