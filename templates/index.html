@@ -80,18 +80,15 @@
                     <li class="nav__item">
                         <a href="{{'/#contacto'}}" class="nav__link">Contacto</a>
                     </li>
-                    
-                    
+
+                    {# Sesion de admin #}
                     {% if session['row'] %}
                     <li class="nav__item">
                         <a href="{{ url_for('dashboard',name=session['row'])}}" class="nav__link">Dashboard</a>
                     </li>
-                    {% endif %}
+                    {% endif %}                    
 
-
-                    
-
-                    {% if session['row'] %}                    
+                    {% if session['row'] or session['client'] %}                    
                         <li class="nav__item log">
                             <a href="{{ url_for('logout')}}" class="nav__link">Logout</a>
                         </li>
@@ -100,6 +97,15 @@
                             <a href="{{ url_for('login')}}" class="nav__link">Login</a>
                         </li>  
                     {% endif %}
+
+                    {# Sesion de cliente #}
+
+                    {% if session['client'] %}
+                    <li class="nav__item">
+                        <a href="{{ url_for('profile',name=session['client'])}}" class="nav__link">Perfil</a>
+                    </li>
+                    {% endif %}                    
+
                 </ul>
             </div>
 
@@ -113,7 +119,8 @@
             </div>
 
             {% block btn_login %}
-            {% if session['row'] %}
+            
+            {% if session['row'] or session['client'] %}
                 <a href="{{ url_for('logout')}}" class="button button__header">Logout</a>
             {% else %}
                 <a href="{{ url_for('login')}}" class="button button__header">Login</a>

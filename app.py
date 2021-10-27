@@ -33,6 +33,10 @@ def internal_error(x):
 def internal_server_error(e):
     return render_template("redirect/404.html"), 500
 
+@app.errorhandler(403)
+def page_forbidden(e):
+    return render_template('403.html'), 500
+
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -156,13 +160,13 @@ def login():
                                 # row = cursor.fetchone()[0]
                                 row = cursor.fetchone()
                                 if row is not None:
-                                    row = row[0]
+                                    client = row[0]
                                     session.permanent = True
-                                    user = row
-                                    session['row'] = user
+                                    user = client
+                                    session['client'] = user
                                     flash('Bienvenido, ','info')
-                                    return redirect(url_for('profile',name = row ))
-                                else:
+                                    return redirect(url_for('profile',name = client ))
+                                else: # ()
                                     # mandar mensaje de cuenta no encontrada o no registrado
                                     return render_template('login.html')
                         else:
@@ -222,18 +226,22 @@ def dashboard(name):
         return render_template('redirect/404.html')
 
 # ============ PRUEBA PARA EL PERFIL DE USUARIO ================== 
-@app.route('/profile', methods=['GET','POST'])
-def profile():
-    # if 'row' in session:
-    return render_template('users/user.html')
-    # else:
-    #     return render_template('redirect/404.html')
+@app.route('/profile/<name>', methods=['GET','POST'])
+def profile(name):
+    if 'client' in session:
+        return render_template('users/user.html',username = name)
+    else:
+        return render_template('redirect/404.html')
 
  # ===================== DESLOGUEO DEL USUARIO ==================   
 @app.route("/logout")
 def logout():
-    session.pop('row', None)
-    return redirect(url_for('home'))
+    if 'client' in session:
+        session.pop('client', None)
+        return redirect(url_for('home'))
+    if 'row' in session:
+        session.pop('row', None)
+        return redirect(url_for('home'))
 
 
 # @app.route("/success", methods=["GET","POST"])
