@@ -43,9 +43,9 @@ def signup():
     error = None
     if request.method == 'POST':
         # register-form #
-        name = request.form.get('name')
-        passSignUp = request.form.get('pass-signup')
-        emailSignUp = request.form.get('email-signup')
+        name = escape(request.form.get('name')) # escape()
+        passSignUp = escape(request.form.get('pass-signup'))
+        emailSignUp = escape(request.form.get('email-signup'))
 
         encriptar = hashlib.sha256(passSignUp.encode('utf-8'))
         encriptado  = encriptar.hexdigest()
@@ -99,8 +99,8 @@ def signup():
 def login():
     if request.method == 'POST':
 
-        email = request.form.get('email-login')
-        password = request.form.get('pass-login')
+        email = escape(request.form.get('email-login'))
+        password = escape(request.form.get('pass-login'))
 
         # Comprobar si el correo es de admin que incluya @hotelmarriot.com
         if utils.isPrivateEmailValid(email) and utils.isMyPasswordValid(password):
