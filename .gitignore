@@ -1,6 +1,8 @@
 *.log
 *.cfg
-__pycache__/
-Lib/
-Scripts/
-Include/
+*.exe
+*.pyc
+*.bat
+*.ps1
+env\Lib\*
+env\Scripts\*
