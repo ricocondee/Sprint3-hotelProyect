@@ -304,65 +304,69 @@ def dashboard(name):
 # ======================= Formularios =============================
 @app.route('/rooms', methods=['GET','POST']) 
 def addRooms():
-    form = roomForms.addRoom()
+    if 'row' in session:
+        form = roomForms.addRoom()
 
-    with sqlite3.connect('database/hotel.db') as Connect:
-        # Para que me devuelva la lisca como un diccionari de datos
-        Connect.row_factory = sqlite3.Row
-        lCursor = Connect.cursor()
-        #  Prepara la sentencia SQL
-        lCursor.execute("SELECT numero_habitacion, tipo, precio FROM habitacion INNER JOIN tipo_habitacion ON id_tipo = tipo_habitacion_fk")
-        rows = lCursor.fetchall()
+        with sqlite3.connect('database/hotel.db') as Connect:
+            # Para que me devuelva la lisca como un diccionari de datos
+            Connect.row_factory = sqlite3.Row
+            lCursor = Connect.cursor()
+            #  Prepara la sentencia SQL
+            lCursor.execute("SELECT numero_habitacion, tipo, precio FROM habitacion INNER JOIN tipo_habitacion ON id_tipo = tipo_habitacion_fk")
+            rows = lCursor.fetchall()
 
-    # if 'row' in session:
-    if request.method == 'POST':
-        number = form.num_room.data
-        # dropDown = form.prueba[0]
-        dropDown = request.form.get('tipo')
-        price = form.price_room.data
-        # stts = form.status_room.data
-        
-        # return dropDown
-        if not number or not dropDown or not price:
-            error = 'Los campos deben ser completados'
-            flash(error)
-            return render_template('admin/create.html', frm=form, prueba = dropDown) 
-        else:
-            if number >= 1: 
-                with sqlite3.connect('database/hotel.db') as connect: 
-                    cur = connect.cursor()
-                    cur.execute("SELECT * FROM habitacion WHERE numero_habitacion=?",[number])
-                    
-                    if cur.fetchone():
-                        error = 'Numero de habitación ya existe'
-                        flash(error)
-                        return render_template('admin/create.html', frm=form, prueba = dropDown) 
-
-                if dropDown:
-                    if len(price) >= 2:
-                        with sqlite3.connect('database/hotel.db') as connect: 
-                        # con.row_factory = sqlite3.Row
-                            cur = connect.cursor()
-                            cur.execute("INSERT INTO habitacion (numero_habitacion,tipo_habitacion_fk,precio) VALUES (?,?,?)",
-                            [number,dropDown,price])
-                            # return 'va bien'
-                            connect.commit()
-                            exito = 'Formulario registrado con exito'
-                            flash(exito)
-                            return render_template('admin/create.html', frm=form, prueba = dropDown)      
-                    else:
-                        error = 'Dato no valido'
-                        flash(error)
-                        return render_template('admin/create.html', frm=form, prueba = dropDown) 
-            else:
-                error = 'Debe ser mayor a uno'
+        # if 'row' in session:
+        if request.method == 'POST':
+            number = form.num_room.data
+            # dropDown = form.prueba[0]
+            dropDown = request.form.get('tipo')
+            price = form.price_room.data
+            # stts = form.status_room.data
+            
+            # return dropDown
+            if not number or not dropDown or not price:
+                error = 'Los campos deben ser completados'
                 flash(error)
                 return render_template('admin/create.html', frm=form, prueba = dropDown) 
-        if form.validate_on_submit():
-            return render_template('admin/create.html', frm=form, prueba = dropDown) 
-    
-    return render_template('admin/create.html',frm=form, var_rows = rows)
+            else:
+                if number >= 1: 
+                    with sqlite3.connect('database/hotel.db') as connect: 
+                        cur = connect.cursor()
+                        cur.execute("SELECT * FROM habitacion WHERE numero_habitacion=?",[number])
+                        
+                        if cur.fetchone():
+                            error = 'Numero de habitación ya existe'
+                            flash(error)
+                            return render_template('admin/create.html', frm=form, prueba = dropDown) 
 
+                    if dropDown:
+                        if len(price) >= 2:
+                            with sqlite3.connect('database/hotel.db') as connect: 
+                            # con.row_factory = sqlite3.Row
+                                cur = connect.cursor()
+                                cur.execute("INSERT INTO habitacion (numero_habitacion,tipo_habitacion_fk,precio) VALUES (?,?,?)",
+                                [number,dropDown,price])
+                                # return 'va bien'
+                                connect.commit()
+                                exito = 'Formulario registrado con exito'
+                                flash(exito)
+                                return render_template('admin/create.html', frm=form, prueba = dropDown)      
+                        else:
+                            error = 'Dato no valido'
+                            flash(error)
+                            return render_template('admin/create.html', frm=form, prueba = dropDown) 
+                else:
+                    error = 'Debe ser mayor a uno'
+                    flash(error)
+                    return render_template('admin/create.html', frm=form, prueba = dropDown) 
+            if form.validate_on_submit():
+                return render_template('admin/create.html', frm=form, prueba = dropDown) 
+
+    else:
+        error = "Ingresa como administrador."
+        flash(error)
+        return redirect(url_for('login'))
+    return render_template('admin/create.html',frm=form, var_rows = rows)
 
 # ============ PRUEBA PARA EL PERFIL DE USUARIO ================== 
 @app.route('/profile/<name>', methods=['GET','POST'])
