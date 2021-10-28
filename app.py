@@ -33,11 +33,11 @@ def internal_error(x):
 
 @app.errorhandler(500)
 def internal_server_error(e):
-    return render_template("redirect/404.html"), 500
+    return render_template("redirect/500.html"), 500
 
 @app.errorhandler(403)
 def page_forbidden(e):
-    return render_template('403.html'), 500
+    return render_template('redirect/403.html'), 403
 
 
 @app.route('/signup', methods=['POST'])
@@ -79,7 +79,7 @@ def signup():
                 return render_template('login.html')
             else:
                 if not utils.isNameValid(name):
-                    error = "Nombres no deben contener caracteres espaciales."
+                    error = "Nombres no deben contener caracteres especiales."
                     flash(error)
                     return render_template('login.html') 
 
