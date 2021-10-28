@@ -307,6 +307,7 @@ p {
   color: var(--title-color);
   padding: .75rem 1.5rem;
   border-radius: 1rem;
+  font-size: 0.8rem;
   font-weight: var(--font-semi-bold);
   -webkit-transition: .3s;
   transition: .3s;
@@ -983,7 +984,7 @@ p {
   visibility: visible;
   position: absolute;
   height: 2.5rem;
-  width: 20rem;
+  width: 25rem;
   background-color: var(--color-light);
   display: -webkit-box;
   display: -ms-flexbox;
