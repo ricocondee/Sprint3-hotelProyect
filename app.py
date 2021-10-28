@@ -4,20 +4,18 @@ from flask import Flask, flash, request, redirect,session
 from flask.helpers import url_for
 import utils
 import os
-#================= Para la base de datos ============================#
-import sqlite3
-#================= Para cifrar las contraseñas ============================#
-import hashlib
-#==================== Hold the sessinon for more longer ===================
-from datetime import timedelta
-
+import sqlite3 #====================== Para la base de datos 
+import hashlib #====================== Para cifrar las contraseñas
+from datetime import timedelta #====== Hold the sessinon for more longer
 from werkzeug.utils import escape, redirect
 from flask.templating import render_template
+#  ARCHIVOS DE FORMULARIO
+from templates.admin import roomForms
+
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 app.permanent_session_lifetime = timedelta(minutes=10)
-
 
 @app.route('/')
 def home():
@@ -25,8 +23,6 @@ def home():
 
 # == Error 404 (Muestra mensage de error si el usuario escribe
 # una url invalida o no autorizada)
-
-
 @app.errorhandler(404)
 def internal_error(x):
     return render_template("redirect/404.html"), 404
@@ -38,7 +34,6 @@ def internal_server_error(e):
 @app.errorhandler(403)
 def page_forbidden(e):
     return render_template('403.html'), 500
-
 
 @app.route('/signup', methods=['POST'])
 def signup():
@@ -95,7 +90,6 @@ def signup():
     return render_template('login.html')
     # except:
     #     return render_template('login.html')
-
 
 # ============================ LOGIN ====================================
 @app.route('/login', methods=['GET', 'POST'])
@@ -188,7 +182,6 @@ def login():
 
     return render_template('login.html')
 
-
     # Login-form #
     # if request.method == 'POST':
     #     emailLogIn = request.form['email-login']
@@ -277,9 +270,26 @@ def reservation():
 @app.route('/<name>', methods=['GET','POST'])
 def dashboard(name):
     if 'row' in session:
+        # if request.method == 'POST':
+        #     return 'jelow'
         return render_template('admin/dashboard.html',username = name)
     else:
         return render_template('redirect/404.html')
+
+# ======================= Formularios =============================
+@app.route('/rooms', methods=['GET','POST']) 
+def addRooms():
+    form = roomForms.addRoom()
+    if 'row' in session:
+        if request.method == 'POST':
+            number = form.num_room.data
+            typeRoom = form.type_room.data
+            price = form.price_room.data
+            # stts = form.status_room.data
+
+            if form.validate_on_submit():
+                return render_template('admin/create.html',frm=form) 
+    return render_template('admin/create.html',frm=form)
 
 # ============ PRUEBA PARA EL PERFIL DE USUARIO ================== 
 @app.route('/profile/<name>', methods=['GET','POST'])
@@ -288,7 +298,7 @@ def profile(name):
         return render_template('users/user.html',username = name)
     else:
         return render_template('redirect/404.html')
-
+    
  # ===================== DESLOGUEO DEL USUARIO ==================   
 @app.route("/logout")
 def logout():
