@@ -1,12 +1,16 @@
- import re
-from flask import Flask, flash, request, redirect,session
+import re
+from flask import Flask, flash, request, redirect, session
 # from flask.globals import session
 from flask.helpers import url_for
 import utils
 import os
-import sqlite3 #====================== Para la base de datos 
-import hashlib #====================== Para cifrar las contraseñas
-from datetime import timedelta #====== Hold the sessinon for more longer
+#================= Para la base de datos ============================#
+import sqlite3
+#================= Para cifrar las contraseñas ============================#
+import hashlib
+# ==================== Hold the sessinon for more longer ===================
+from datetime import timedelta, datetime
+
 from werkzeug.utils import escape, redirect
 from flask.templating import render_template
 #  ARCHIVOS DE FORMULARIO
@@ -27,17 +31,19 @@ def home():
 def internal_error(x):
     return render_template("redirect/404.html"), 404
 
+
 @app.errorhandler(500)
 def internal_server_error(e):
-    return render_template("redirect/404.html"), 500
+    return render_template("redirect/500.html"), 500
+
 
 @app.errorhandler(403)
 def page_forbidden(e):
-    return render_template('403.html'), 500
+    return render_template('redirect/403.html'), 403
 
 @app.route('/signup', methods=['POST'])
 def signup():
-    # try:   
+    # try:
     error = None
     if request.method == 'POST':
         # register-form #
@@ -46,7 +52,7 @@ def signup():
         emailSignUp = escape(request.form.get('email-signup'))
 
         encriptar = hashlib.sha256(passSignUp.encode('utf-8'))
-        encriptado  = encriptar.hexdigest()
+        encriptado = encriptar.hexdigest()
 
         if not name or not emailSignUp or not passSignUp:
             error = "Llena todos los campos."
@@ -58,7 +64,7 @@ def signup():
                 flash(error)
                 return render_template('login.html')
 
-            if (len(passSignUp) <= 7) :
+            if (len(passSignUp) <= 7):
                 error = "Contraseña debe ser superior a 8 carácteres"
                 flash(error)
                 return render_template('login.html')
@@ -74,15 +80,15 @@ def signup():
                 return render_template('login.html')
             else:
                 if not utils.isNameValid(name):
-                    error = "Nombres no deben contener caracteres espaciales."
+                    error = "Nombres no deben contener caracteres especiales."
                     flash(error)
-                    return render_template('login.html') 
+                    return render_template('login.html')
 
-        with sqlite3.connect('database/hotel.db') as connect: 
+        with sqlite3.connect('database/hotel.db') as connect:
             # con.row_factory = sqlite3.Row
             cur = connect.cursor()
             cur.execute("INSERT INTO cliente (nombre_cliente,email_cliente,password) VALUES (?,?,?)",
-            [name,emailSignUp,encriptado])
+                        [name, emailSignUp, encriptado])
             # return 'va bien'
             connect.commit()
             return render_template("redirect/success.html")
@@ -101,7 +107,7 @@ def login():
 
         # Comprobar si el correo es de admin que incluya @hotelmarriot.com
         if utils.isPrivateEmailValid(email) and utils.isMyPasswordValid(password):
-            
+
             encrypt = hashlib.sha256(password.encode('utf-8'))
             encrypted = encrypt.hexdigest()
 
@@ -111,18 +117,18 @@ def login():
                 cursor = con.cursor()
                 # cursor.execute("INSERT INTO admin (nombre_admin,apellido_admin,telefono_admin,email_admin, password) VALUES (?,?,?,?,?)",
                 cursor.execute("SELECT nombre_admin FROM admin WHERE email_admin=? AND password=?",
-                [email,encrypted])
+                               [email, encrypted])
                 # con.commit()
-                row = cursor.fetchone()[0] #
+                row = cursor.fetchone()[0]
                 if row:
                     session.permanent = True
                     user = row
                     session['row'] = user
-                    flash('Bienvenido, ','info')
-                    return redirect(url_for('dashboard',name = row ))
+                    flash('Bienvenido, ', 'info')
+                    return redirect(url_for('dashboard', name=row))
                 elif row in session:
-                    #se puede crear una pagina para decir admin inabilitado
-                    return redirect(url_for('dashboard',name = row))
+                    # se puede crear una pagina para decir admin inabilitado
+                    return redirect(url_for('dashboard', name=row))
                 if not row:
                     return render_template('redirect/404.html')
         else:
@@ -130,16 +136,16 @@ def login():
                 error = "Correo no valido."
                 flash(error)
                 return render_template('login.html',
-                passStatement = password,
-                emailStatement = email)
+                                       passStatement=password,
+                                       emailStatement=email)
             else:
                 if utils.isEmailValid(email):
                     if (len(password) <= 7):
                         error = "La contraseña no debe ser menor de 8 caracteres."
                         flash(error)
                         return render_template('login.html',
-                        passStatement = password,
-                        emailStatement = email)
+                                               passStatement=password,
+                                               emailStatement=email)
                     else:
                         if utils.isMyPasswordValid(password):
                             encrypt = hashlib.sha256(password.encode('utf-8'))
@@ -151,7 +157,7 @@ def login():
                                 cursor = con.cursor()
                                 # cursor.execute("INSERT INTO admin (nombre_admin,apellido_admin,telefono_admin,email_admin, password) VALUES (?,?,?,?,?)",
                                 cursor.execute("SELECT nombre_cliente FROM cliente WHERE email_cliente=? AND password=?",
-                                [email,encrypted])
+                                               [email, encrypted])
                                 # con.commit()
                                 # row = cursor.fetchone()[0]
                                 row = cursor.fetchone()
@@ -160,23 +166,23 @@ def login():
                                     session.permanent = True
                                     user = client
                                     session['client'] = user
-                                    flash('Bienvenido, ','info')
-                                    return redirect(url_for('profile',name = client ))
-                                else: # ()
+                                    flash('Bienvenido, ', 'info')
+                                    return redirect(url_for('profile', name=client))
+                                else:  # ()
                                     # mandar mensaje de cuenta no encontrada o no registrado
                                     return render_template('login.html')
                         else:
                             error = "Contraseña o correos invalidos."
                             flash(error)
                             return render_template('login.html',
-                            passStatement = password,
-                            emailStatement = email)           
+                                                   passStatement=password,
+                                                   emailStatement=email)
                 else:
                     error = "Correo no valido."
                     flash(error)
                     return render_template('login.html',
-                    passStatement = password,
-                    emailStatement = email)
+                                           passStatement=password,
+                                           emailStatement=email)
 
             # return 'Eres user'
 
@@ -206,73 +212,94 @@ def login():
     # return render_template('login.html')
 
 
+def sqlConnection():  # conexion con la base de datos
+    con = sqlite3.connect('database/hotel.db')
+    return con
+
+
 @app.route('/reservation', methods=['GET', 'POST'])
 def reservation():
-    if request.method == 'POST':
-        name = request.form['name']
-        lastname = request.form['lastname']
-        email = request.form['email']
-        confirmeEmail = request.form['confirm-email']
-        phoneNumber = request.form['phone-number']
-        checkin = request.form['check-in']
-        checkout = request.form['check-out']
-        language = request.form['list-languages']
-        country = request.form['list-countries']
-        adultsQuantity = request.form['number-of-adults']
-        kidsQuantity = request.form['number-of-kids']
-        petition = request.form['petitions']
-        policies = request.form.get('policies')
+    if 'client' in session:
+        if request.method == 'POST':
+            name = request.form['name']
+            lastname = request.form['lastname']
+            email = request.form['email']
+            confirmeEmail = request.form['confirm-email']
+            phoneNumber = request.form['phone-number']
+            checkin = request.form['check-in']
+            checkout = request.form['check-out']
+            language = request.form['list-languages']
+            country = request.form['list-countries']
+            adultsQuantity = request.form['number-of-adults']
+            kidsQuantity = request.form['number-of-kids']
+            petition = request.form['petitions']
+            policies = request.form.get('policies')
 
-        def returned():
-            return render_template('reservation.html',
-                                   nameStatement=name,
-                                   lastnameStatement=lastname,
-                                   emailStatement=email,
-                                   confirmeEmailStatement=confirmeEmail,
-                                   phoneStatement=phoneNumber,
-                                   checkinStatement=checkin,
-                                   checkoutStatement=checkout,
-                                   languageStatement=language,
-                                   countryStatement=country,
-                                   adultsQuantityStatement=adultsQuantity,
-                                   kidsQuantityStatement=kidsQuantity,
-                                   petitionStatement=petition)
+            def returned():
+                return render_template('reservation.html',
+                                    nameStatement=name,
+                                    lastnameStatement=lastname,
+                                    emailStatement=email,
+                                    confirmeEmailStatement=confirmeEmail,
+                                    phoneStatement=phoneNumber,
+                                    checkinStatement=checkin,
+                                    checkoutStatement=checkout,
+                                    languageStatement=language,
+                                    countryStatement=country,
+                                    adultsQuantityStatement=adultsQuantity,
+                                    kidsQuantityStatement=kidsQuantity,
+                                    petitionStatement=petition)
 
-        if not name or not lastname or not email or not confirmeEmail or not phoneNumber or not checkin or not checkout or not language or not country or not adultsQuantity or not kidsQuantity:
-            error = 'Los campos marcados con (*) son obligatorios.'
-            flash(error)
-            return returned()
-        else:
-            if not utils.isEmailValid(email):
-                error = "El email no es valido."
+            if not name or not lastname or not email or not confirmeEmail or not phoneNumber or not checkin or not checkout or not language or not country or not adultsQuantity:
+                error = 'Los campos marcados con (*) son obligatorios.'
                 flash(error)
                 return returned()
-            elif email != confirmeEmail:
-                error = "El email no coincide."
-                flash(error)
-                return returned()
-            elif not kidsQuantity or not adultsQuantity:
-                error = "Almenos 1 adulto, si no hay niños coloque 0."
-                flash(error)
-                return returned()
-            elif policies == None:
-                error = "Debe aceptar los terminos y condiciones."
-                flash(error)
-                return returned()
-            elif not petition:
-                petition = "Sin peticiones especiales."
+            else:
+                if not utils.isEmailValid(email):
+                    error = "El email no es valido."
+                    flash(error)
+                    return returned()
+                elif email != confirmeEmail:
+                    error = "El email no coincide."
+                    flash(error)
+                    return returned()
+                elif not adultsQuantity:
+                    error = "Almenos 1 adulto"
+                    flash(error)
+                    return returned()
+
+                elif policies == None:
+                    error = "Debe aceptar los terminos y condiciones."
+                    flash(error)
+                    return returned()
+
+                elif not petition:
+                    petition = "Sin peticiones especiales."
+
+                if not kidsQuantity:
+                    kidsQuantity = 0
+
+            fechaReserva = datetime.now().strftime('%d-%m-%Y | %H:%M:%S')
+            con = sqlConnection()
+            cur = con.cursor()
+            sqlrt = 'INSERT INTO reserva (nombre, apellido, fecha_inicio, fecha_fin, adultos, menores, email, telefono, idioma, pais, peticiones, fecha_solicitud) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)'# query consult
+            cur.execute(sqlrt, [name, lastname,  checkin, checkout, adultsQuantity, kidsQuantity, email, phoneNumber, language, country, petition, fechaReserva])  # execute query
+            con.commit()  # Guarda los cambios
+    else:
+        error = "Debes loguearte primero"
+        flash(error)
+        return redirect(url_for('login'))
 
     return render_template('reservation.html')
 
-# ============ PRUEBA PARA EL DASHBOARD ================== 
-@app.route('/<name>', methods=['GET','POST'])
+
+# ============ PRUEBA PARA EL DASHBOARD ==================
+@app.route('/<name>', methods=['GET', 'POST'])
 def dashboard(name):
     if 'row' in session:
-        # if request.method == 'POST':
-        #     return 'jelow'
-        return render_template('admin/dashboard.html',username = name)
+        return render_template('admin/dashboard.html', username=name)
     else:
-        return render_template('redirect/404.html')
+        return render_template('redirect/403.html')
 
 # ======================= Formularios =============================
 @app.route('/rooms', methods=['GET','POST']) 
@@ -290,73 +317,80 @@ def addRooms():
         # return render_template("listar-usuario.html", var_rows = rows)
 
     
-    # if 'row' in session:
-    if request.method == 'POST':
-        number = form.num_room.data
-        # dropDown = form.prueba[0]
-        dropDown = request.form.get('tipo')
-        price = form.price_room.data
-        # stts = form.status_room.data
-        
-        # return dropDown
-        if not number or not dropDown or not price:
-            error = 'Los campos deben ser completados'
-            flash(error)
-            return render_template('admin/create.html', frm=form, prueba = dropDown,var_rows = rows) 
-        else:
-            if number >= 1: 
-                with sqlite3.connect('database/hotel.db') as connect: 
-                    cur = connect.cursor()
-                    cur.execute("SELECT * FROM habitacion WHERE numero_habitacion=?",[number])
-                    
-                    if cur.fetchone():
-                        error = 'Numero de habitación ya existe'
-                        flash(error)
-                        return render_template('admin/create.html',
-                        frm=form,
-                        prueba = dropDown,
-                        var_rows = rows) 
-
-                if dropDown:
-                    if len(price) >= 2:
-                        with sqlite3.connect('database/hotel.db') as connect: 
-                        # con.row_factory = sqlite3.Row
-                            cur = connect.cursor()
-                            cur.execute("INSERT INTO habitacion (numero_habitacion,tipo_habitacion_fk,precio) VALUES (?,?,?)",
-                            [number,dropDown,price])
-                            # return 'va bien'
-                            connect.commit()
-                            exito = 'Formulario registrado con exito'
-                            flash(exito)
+    if 'row' in session:
+        if request.method == 'POST':
+            number = form.num_room.data
+            # dropDown = form.prueba[0]
+            dropDown = request.form.get('tipo')
+            price = form.price_room.data
+            # stts = form.status_room.data
+            
+            # return dropDown
+            if not number or not dropDown or not price:
+                error = 'Los campos deben ser completados'
+                flash(error)
+                return render_template('admin/create.html', frm=form, prueba = dropDown,var_rows = rows) 
+            else:
+                if number >= 1: 
+                    with sqlite3.connect('database/hotel.db') as connect: 
+                        cur = connect.cursor()
+                        cur.execute("SELECT * FROM habitacion WHERE numero_habitacion=?",[number])
+                        
+                        if cur.fetchone():
+                            error = 'Numero de habitación ya existe'
+                            flash(error)
                             return render_template('admin/create.html',
                             frm=form,
                             prueba = dropDown,
-                            var_rows = rows)      
-                    else:
-                        error = 'Dato no valido'
-                        flash(error)
-                        return render_template('admin/create.html',
-                        frm=form,
-                        prueba = dropDown,
-                        var_rows = rows) 
-            else:
-                error = 'Debe ser mayor a uno'
-                flash(error)
+                            var_rows = rows) 
+
+                    if dropDown:
+                        if len(price) >= 2:
+                            with sqlite3.connect('database/hotel.db') as connect: 
+                            # con.row_factory = sqlite3.Row
+                                cur = connect.cursor()
+                                cur.execute("INSERT INTO habitacion (numero_habitacion,tipo_habitacion_fk,precio) VALUES (?,?,?)",
+                                [number,dropDown,price])
+                                # return 'va bien'
+                                connect.commit()
+                                exito = 'Formulario registrado con exito'
+                                flash(exito)
+                                return render_template('admin/create.html',
+                                frm=form,
+                                prueba = dropDown,
+                                var_rows = rows)      
+                        else:
+                            error = 'Dato no valido'
+                            flash(error)
+                            return render_template('admin/create.html',
+                            frm=form,
+                            prueba = dropDown,
+                            var_rows = rows) 
+                else:
+                    error = 'Debe ser mayor a uno'
+                    flash(error)
+                    return render_template('admin/create.html', frm=form, prueba = dropDown) 
+            if form.validate_on_submit():
                 return render_template('admin/create.html', frm=form, prueba = dropDown) 
-        if form.validate_on_submit():
-            return render_template('admin/create.html', frm=form, prueba = dropDown) 
-    
+    else:
+        error = "Ingresa como administrador."
+        flash(error)
+        return redirect(url_for('login'))
     return render_template('admin/create.html',frm=form, var_rows = rows)
 
 # ============ PRUEBA PARA EL PERFIL DE USUARIO ================== 
 @app.route('/profile/<name>', methods=['GET','POST'])
 def profile(name):
     if 'client' in session:
-        return render_template('users/user.html',username = name)
+        message = "Vuelve al home para reservar."
+        flash(message)
+        return render_template('users/user.html', username=name)
     else:
-        return render_template('redirect/404.html')
-    
- # ===================== DESLOGUEO DEL USUARIO ==================   
+        return render_template('redirect/403.html')
+
+ # ===================== DESLOGUEO DEL USUARIO ==================
+
+
 @app.route("/logout")
 def logout():
     if 'client' in session:
