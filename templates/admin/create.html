@@ -1,5 +1,5 @@
 {% extends "index.html" %}
-
+<link rel="stylesheet" href="../../static/css/main.css">
 <title>{% block title %} Dashboard {% endblock %}</title>
 
 {# block header #}{# endblock #}
@@ -102,21 +102,63 @@
     </div>
 
     <div class="container__dash grid__dash">
-        <div class="content__dash">
-            <div class="content__dash-title">
-                Administrador de Habitaciones
-            </div>
-            <div class="input__field">
-                {{frm.num_room.label}}
-                {{frm.num_room(class="input")}}
-            </div>
-            <div class="input__field">
-                {{frm.type_room.label}}
-                {{frm.type_room(class="textArea")}}
-            </div>
-            <div class="input__field">
-                {{frm.price_room.label}}
-                {{frm.price_room(class="input")}}
+        <div class="wrapper">
+
+
+
+            <div class="content__dash">
+                <div class="content__dash-title">
+                    Administrador de Habitaciones
+                </div>
+                <form action="/rooms" method="post">
+                    <div class="input__field">
+                        {{frm.num_room.label(class="label")}}
+                        {{frm.num_room(class="input")}}  
+                    </div>
+    
+                    <div class="input__field">
+                        <label class="label" for="">Tipo de habitación</label>
+                        <div class="custom__select">
+                        <select name="tipo" id="tipo"><!--El name está en esta linea-->
+                            <option value="">- Select -</option>
+                            {% for x in frm.prueba %}
+                                <option value="{{x[0]}}">{{x[1]}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    </div>
+    
+                    <div class="input__field">
+                        {{frm.price_room.label(class="label")}}
+                        {{frm.price_room(class="input")}}
+                    </div>
+    
+    
+                    <div class="input__field">
+                        {{frm.guardar(class="button button-link")}}
+                    </div>
+                </form>
+                <div>
+                    <table class="table">
+                        <thead class="table__head">
+                            <tr class="table__row-head">
+                                <th class="table__item">Nº Habitación</th>
+                                <th class="table__item">Tipo de habitacion</th>
+                                <th class="table__item">Precio</th>
+                            </tr>
+                        </thead>
+        
+                        <tbody>
+                            {% for usu in var_rows %}
+                                <tr>
+                                    <td class="table__info">{{ usu['numero_habitacion']}}</td>
+                                    <td class="table__info">{{ usu['tipo']}}</td>
+                                    <td class="table__info">{{ usu['precio']}}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
