@@ -342,7 +342,7 @@ $nav-width: 4rem;
     // gap: .5rem;
     
     &__row-head{
-        background-color: hsl(145, 36%, 58%);
+        background-color: var(--primary-color-light);
         
     }
     
@@ -357,8 +357,9 @@ $nav-width: 4rem;
     &__info{
         border-right:1px solid hsl(0, 1%, 56%);
         padding: .3rem;
+        text-align: center;
     }
 }
 tr:nth-child(even) {
-    background-color:var(--primary-color);
+    background-color:var(--color-transparent);
   }
