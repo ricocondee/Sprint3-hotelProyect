@@ -302,7 +302,7 @@ def addRooms():
         if not number or not dropDown or not price:
             error = 'Los campos deben ser completados'
             flash(error)
-            return render_template('admin/create.html', frm=form, prueba = dropDown) 
+            return render_template('admin/create.html', frm=form, prueba = dropDown,var_rows = rows) 
         else:
             if number >= 1: 
                 with sqlite3.connect('database/hotel.db') as connect: 
@@ -312,7 +312,10 @@ def addRooms():
                     if cur.fetchone():
                         error = 'Numero de habitación ya existe'
                         flash(error)
-                        return render_template('admin/create.html', frm=form, prueba = dropDown) 
+                        return render_template('admin/create.html',
+                        frm=form,
+                        prueba = dropDown,
+                        var_rows = rows) 
 
                 if dropDown:
                     if len(price) >= 2:
@@ -328,18 +331,14 @@ def addRooms():
                             return render_template('admin/create.html',
                             frm=form,
                             prueba = dropDown,
-                            var_rows = rows,
-                            num_room ='',
-                            price_room='')      
+                            var_rows = rows)      
                     else:
                         error = 'Dato no valido'
                         flash(error)
                         return render_template('admin/create.html',
                         frm=form,
                         prueba = dropDown,
-                        var_rows = rows,
-                        num_room ='',
-                        price_room='') 
+                        var_rows = rows) 
             else:
                 error = 'Debe ser mayor a uno'
                 flash(error)
