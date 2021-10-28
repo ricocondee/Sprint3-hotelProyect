@@ -13,11 +13,13 @@ from datetime import timedelta, datetime
 
 from werkzeug.utils import escape, redirect
 from flask.templating import render_template
+#  ARCHIVOS DE FORMULARIO
+from templates.admin import roomForms
+
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 app.permanent_session_lifetime = timedelta(minutes=10)
-
 
 @app.route('/')
 def home():
@@ -25,8 +27,6 @@ def home():
 
 # == Error 404 (Muestra mensage de error si el usuario escribe
 # una url invalida o no autorizada)
-
-
 @app.errorhandler(404)
 def internal_error(x):
     return render_template("redirect/404.html"), 404
@@ -41,16 +41,15 @@ def internal_server_error(e):
 def page_forbidden(e):
     return render_template('redirect/403.html'), 403
 
-
 @app.route('/signup', methods=['POST'])
 def signup():
     # try:
     error = None
     if request.method == 'POST':
         # register-form #
-        name = request.form.get('name')
-        passSignUp = request.form.get('pass-signup')
-        emailSignUp = request.form.get('email-signup')
+        name = escape(request.form.get('name'))
+        passSignUp = escape(request.form.get('pass-signup'))
+        emailSignUp = escape(request.form.get('email-signup'))
 
         encriptar = hashlib.sha256(passSignUp.encode('utf-8'))
         encriptado = encriptar.hexdigest()
@@ -98,14 +97,13 @@ def signup():
     # except:
     #     return render_template('login.html')
 
-
 # ============================ LOGIN ====================================
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
 
-        email = request.form.get('email-login')
-        password = request.form.get('pass-login')
+        email = escape(request.form.get('email-login'))
+        password = escape(request.form.get('pass-login'))
 
         # Comprobar si el correo es de admin que incluya @hotelmarriot.com
         if utils.isPrivateEmailValid(email) and utils.isMyPasswordValid(password):
@@ -303,10 +301,71 @@ def dashboard(name):
     else:
         return render_template('redirect/403.html')
 
-# ============ PRUEBA PARA EL PERFIL DE USUARIO ==================
+# ======================= Formularios =============================
+@app.route('/rooms', methods=['GET','POST']) 
+def addRooms():
+    form = roomForms.addRoom()
+
+    with sqlite3.connect('database/hotel.db') as Connect:
+        # Para que me devuelva la lisca como un diccionari de datos
+        Connect.row_factory = sqlite3.Row
+        lCursor = Connect.cursor()
+        #  Prepara la sentencia SQL
+        lCursor.execute("SELECT numero_habitacion, tipo, precio FROM habitacion INNER JOIN tipo_habitacion ON id_tipo = tipo_habitacion_fk")
+        rows = lCursor.fetchall()
+
+    # if 'row' in session:
+    if request.method == 'POST':
+        number = form.num_room.data
+        # dropDown = form.prueba[0]
+        dropDown = request.form.get('tipo')
+        price = form.price_room.data
+        # stts = form.status_room.data
+        
+        # return dropDown
+        if not number or not dropDown or not price:
+            error = 'Los campos deben ser completados'
+            flash(error)
+            return render_template('admin/create.html', frm=form, prueba = dropDown) 
+        else:
+            if number >= 1: 
+                with sqlite3.connect('database/hotel.db') as connect: 
+                    cur = connect.cursor()
+                    cur.execute("SELECT * FROM habitacion WHERE numero_habitacion=?",[number])
+                    
+                    if cur.fetchone():
+                        error = 'Numero de habitación ya existe'
+                        flash(error)
+                        return render_template('admin/create.html', frm=form, prueba = dropDown) 
+
+                if dropDown:
+                    if len(price) >= 2:
+                        with sqlite3.connect('database/hotel.db') as connect: 
+                        # con.row_factory = sqlite3.Row
+                            cur = connect.cursor()
+                            cur.execute("INSERT INTO habitacion (numero_habitacion,tipo_habitacion_fk,precio) VALUES (?,?,?)",
+                            [number,dropDown,price])
+                            # return 'va bien'
+                            connect.commit()
+                            exito = 'Formulario registrado con exito'
+                            flash(exito)
+                            return render_template('admin/create.html', frm=form, prueba = dropDown)      
+                    else:
+                        error = 'Dato no valido'
+                        flash(error)
+                        return render_template('admin/create.html', frm=form, prueba = dropDown) 
+            else:
+                error = 'Debe ser mayor a uno'
+                flash(error)
+                return render_template('admin/create.html', frm=form, prueba = dropDown) 
+        if form.validate_on_submit():
+            return render_template('admin/create.html', frm=form, prueba = dropDown) 
+    
+    return render_template('admin/create.html',frm=form, var_rows = rows)
 
 
-@app.route('/profile/<name>', methods=['GET', 'POST'])
+# ============ PRUEBA PARA EL PERFIL DE USUARIO ================== 
+@app.route('/profile/<name>', methods=['GET','POST'])
 def profile(name):
     if 'client' in session:
         message = "Vuelve al home para reservar."
