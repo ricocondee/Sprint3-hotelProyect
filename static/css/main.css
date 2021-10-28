@@ -1341,4 +1341,48 @@ p {
   border-radius: 3px;
   pointer-events: none;
 }
+
+.btn {
+  width: 40%;
+  margin: 0 auto;
+  padding: .5rem 1rem;
+  font-size: 1.2rem;
+  border: 0;
+  background: #7891d3;
+  cursor: pointer;
+  outline: none;
+  font-weight: 550;
+  color: #232329;
+}
+
+.btn:hover {
+  background: #516290;
+  color: white;
+}
+
+/*========================= TABLES ===============================*/
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table__row-head {
+  background-color: var(--primary-color-light);
+}
+
+.table__item {
+  border-right: 1px solid #908e8e;
+  margin-bottom: 1rem;
+  padding: .75rem;
+}
+
+.table__info {
+  border-right: 1px solid #908e8e;
+  padding: .3rem;
+  text-align: center;
+}
+
+tr:nth-child(even) {
+  background-color: var(--color-transparent);
+}
 /*# sourceMappingURL=main.css.map */

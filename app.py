@@ -287,6 +287,9 @@ def addRooms():
         lCursor.execute("SELECT numero_habitacion, tipo, precio FROM habitacion INNER JOIN tipo_habitacion ON id_tipo = tipo_habitacion_fk")
         rows = lCursor.fetchall()
 
+        # return render_template("listar-usuario.html", var_rows = rows)
+
+    
     # if 'row' in session:
     if request.method == 'POST':
         number = form.num_room.data
@@ -299,7 +302,7 @@ def addRooms():
         if not number or not dropDown or not price:
             error = 'Los campos deben ser completados'
             flash(error)
-            return render_template('admin/create.html', frm=form, prueba = dropDown) 
+            return render_template('admin/create.html', frm=form, prueba = dropDown,var_rows = rows) 
         else:
             if number >= 1: 
                 with sqlite3.connect('database/hotel.db') as connect: 
@@ -309,7 +312,10 @@ def addRooms():
                     if cur.fetchone():
                         error = 'Numero de habitación ya existe'
                         flash(error)
-                        return render_template('admin/create.html', frm=form, prueba = dropDown) 
+                        return render_template('admin/create.html',
+                        frm=form,
+                        prueba = dropDown,
+                        var_rows = rows) 
 
                 if dropDown:
                     if len(price) >= 2:
@@ -322,11 +328,17 @@ def addRooms():
                             connect.commit()
                             exito = 'Formulario registrado con exito'
                             flash(exito)
-                            return render_template('admin/create.html', frm=form, prueba = dropDown)      
+                            return render_template('admin/create.html',
+                            frm=form,
+                            prueba = dropDown,
+                            var_rows = rows)      
                     else:
                         error = 'Dato no valido'
                         flash(error)
-                        return render_template('admin/create.html', frm=form, prueba = dropDown) 
+                        return render_template('admin/create.html',
+                        frm=form,
+                        prueba = dropDown,
+                        var_rows = rows) 
             else:
                 error = 'Debe ser mayor a uno'
                 flash(error)
@@ -335,7 +347,6 @@ def addRooms():
             return render_template('admin/create.html', frm=form, prueba = dropDown) 
     
     return render_template('admin/create.html',frm=form, var_rows = rows)
-
 
 # ============ PRUEBA PARA EL PERFIL DE USUARIO ================== 
 @app.route('/profile/<name>', methods=['GET','POST'])
