@@ -1,107 +1,117 @@
 /* Importaciones */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap");
 
 /* variables */
-:root{
-    --font-base-color: hsl(228, 28%, 9%);
-    --font-secondary-base-color:hsl(0, 0%, 40%);
-    --font-light-color: hsl(223, 82%, 96%);
-    --font-size-title: 4rem;
-    --font-size-paragraph: 1.2rem;
-    --primary-color: hsl(223, 89%, 79%);
-    --secondary-color-first: hsl(223, 88%, 87%);
-    --secondary-color-alpha: hsla(223, 88%, 87%, 0.473);
-    --secondary-color-one: hsl(223, 90%, 92%);
-    --secondary-color-two: hsl(223, 81%, 85%, 53%);
-    --secondary-color-three: hsl(223, 5%, 97%);
-    --secondary-color-four: hsl(0, 0, 100%);
-    --font-family: 'Poppins', sans-serif;
+:root {
+  --font-base-color: hsl(228, 28%, 9%);
+  --font-secondary-base-color: hsl(0, 0%, 40%);
+  --font-light-color: hsl(223, 82%, 96%);
+  --font-size-title: 4rem;
+  --font-size-paragraph: 1.2rem;
+  --primary-color: hsl(223, 89%, 79%);
+  --secondary-color-first: hsl(223, 88%, 87%);
+  --secondary-color-alpha: hsla(223, 88%, 87%, 0.473);
+  --secondary-color-one: hsl(223, 90%, 92%);
+  --secondary-color-two: hsl(223, 81%, 85%, 53%);
+  --secondary-color-three: hsl(223, 5%, 97%);
+  --secondary-color-four: hsl(0, 0, 100%);
+  --font-family: "Poppins", sans-serif;
 }
 
-
-*{
-    font-family: var(--font-family);
-    box-sizing: border-box;
-	text-decoration: none;
-	border: none;
+* {
+  font-family: var(--font-family);
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none;
 }
 
 body {
-	background: var(--secondary-color-three);
-	display: flex;
-	flex-direction: column;
-	height: 100vh;
+  background: var(--secondary-color-three);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
-
 
 form {
-	background-color: var(--secondary-color-four);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	flex-direction: column;
-	padding: 0 50px;
-	height: 100%;
-	
+  background-color: var(--secondary-color-four);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  height: 100%;
 }
 
-form a{
-	color: var(--font-secondary-base-color);
+form a {
+  color: var(--font-secondary-base-color);
 }
 
-input{
-    border: none;
-    background-color: var(--secondary-color-alpha);
-    border-radius: 5px;
-    width: 200px;
-    height: 30px;
-    margin: 5px;
-    padding: 5px;
+input {
+  border: none;
+  background-color: var(--secondary-color-alpha);
+  border-radius: 5px;
+  width: 200px;
+  height: 30px;
+  margin: 5px;
+  padding: 5px;
 }
 
-h1{
-    display: flex;
-    justify-content: center;
-	font-size: var(--font-size-title)
-    
+h1 {
+  display: flex;
+  justify-content: center;
+  font-size: var(--font-size-title);
 }
 
-button{
-	cursor: pointer;
+button {
+  cursor: pointer;
+  margin-top: 10px;
 }
-button a{
-	color: var(--secondary-color-three);
-}
-
-
-.all{
-    border-radius: 10px;
-  	box-shadow: 0 14px 28px var(--secondary-color-alpha), 0 10px 10px var(--secondary-color-alpha);
-	overflow: hidden;
-	width: 780px;
-	max-width: 100vw;
-	min-height: 480px;
-	margin: 85px auto;
-	justify-content: center;
-	align-items: center;
+button a {
+  color: var(--secondary-color-three);
 }
 
-.social-register{
-    margin: 20px 0;
-    background-size: cover;
+.all {
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px var(--secondary-color-alpha),
+    0 10px 10px var(--secondary-color-alpha);
+  overflow: hidden;
+  width: 780px;
+  max-width: 100vw;
+  min-height: 480px;
+  justify-content: center;
+  align-items: center;
+  top: 15%;
+  left: 22.5%;
 }
 
-.social-register{
-	border-radius: 50%;
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
-	margin: 0 5px;
-	height: 32px;
-	width: 32px;
+.social-container {
+  width: 100%;
+  height: 50px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
-.social-register:first-child{
+
+.social-register {
+  background-size: cover;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+  height: 32px;
+  width: 32px;
+}
+
+.bi {
+  font-size: 32px;
+  color: var(--font-base-color);
+}
+/* .social-register:first-child{
 	background-image: url('/static/images/facebook.svg');
 }
 .social-register:nth-child(2){
@@ -109,85 +119,136 @@ button a{
 }
 .social-register:nth-child(3){
 	background-image: url('/static/images/linkedin.svg');
+} */
+
+.form-login {
+  background-color: var(--secondary-color-three);
+  height: 100%;
+  float: left;
+  width: 50%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-
-.form-login{
-    background-color: var(--secondary-color-three);
-	height: 100%;
-	float: left;
-    width: 50%;
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
+.swipe-one {
+  display: none;
 }
 
-.swipe-one{
-	display: none;
+.form-register {
+  background-color: var(--secondary-color-three);
+  height: 100%;
+  width: 50%;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-
-.form-register{
-    background-color: var(--secondary-color-three);
-	height: 100%;
-    width: 50%;
-	display: none;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
+.swipe-two {
+  display: flex;
 }
 
-.swipe-two{
-	display: flex;
+.effect-div {
+  background-color: var(--primary-color);
+  height: 100%;
+  width: 50%;
+  display: flex;
+  float: left;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-.effect-div{
-    background-color: var(--primary-color);
-	height: 100%;
-    width: 50%;
-	display: flex;
-	float: left;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
+.effect-div p {
+  color: var(--font-light-color);
+  font-size: var(--font-size-paragraph);
 }
 
-.effect-div p{
-	color: var(--font-light-color);
-	font-size: var(--font-size-paragraph);
+button.access {
+  border-radius: 20px;
+  background-color: var(--primary-color);
+  color: var(--secondary-color-three);
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-
-button.access{
-    border-radius: 20px;
-	background-color: var(--primary-color);
-	color: var(--secondary-color-three);
-	font-size: 12px;
-	font-weight: bold;
-	padding: 12px 45px;
-	letter-spacing: 1px;
-	text-transform: uppercase;
+button.none {
+  border-radius: 20px;
+  border: 1px solid var(--secondary-color-three);
+  background-color: var(--primary-color);
+  color: var(--font-light-color);
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-button.none{
-    border-radius: 20px;
-	border: 1px solid var(--secondary-color-three);
-	background-color: var(--primary-color);
-	color: var(--font-light-color);
-	font-size: 12px;
-	font-weight: bold;
-	padding: 12px 45px;
-	letter-spacing: 1px;
-	text-transform: uppercase;
+.flash {
+  padding: 5px 0;
 }
 
-.flash{
-	padding: 5px 0;
+@media only screen and (max-width: 1024px){
+	.all {
+	  width: 90%;
+	  height: 780px;
+	  top: 15%;
+	  left: 5%;
+	}
+  }
+
+@media only screen and (max-width: 834px){
+  .all {
+    width: 90%;
+    height: 780px;
+    top: 15%;
+    left: 5%;
+  }
 }
 
+@media only screen and (max-width: 428px){
+  h1 {
+    font-size: 3rem;
+  }
+  .all {
+    width: 90%;
+    height: 680px;
+    left: 5%;
+  }
+  .form-login {
+    width: 100%;
+    height: 50%;
+  }
+  .effect-div {
+    width: 100%;
+    height: 50%;
+  }
+  .form-register {
+    width: 100%;
+    height: 50%;
+  }
+}
 
+@media only screen and (max-width: 1280px) {
+	h1{
+		font-size: 3rem;
+	}
+  .all {
+	  top: 10%;
+	  height: 90%;
+  }
+  .form-login,
+  .effect-div, .form-register {
+    width: 100%;
+    height: 50%;
+  }
+}
